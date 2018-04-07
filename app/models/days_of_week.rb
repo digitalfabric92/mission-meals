@@ -1,2 +1,0 @@
-class DaysOfWeek < ApplicationRecord
-end

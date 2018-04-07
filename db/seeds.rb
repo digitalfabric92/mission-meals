@@ -5,12 +5,12 @@ User.destroy_all
 Breakfast.destroy_all
 Lunch.destroy_all
 Dinner.destroy_all
-DaysOfWeek.destroy_all
+Day.destroy_all
 Stock.destroy_all
 Ingredient.destroy_all
 
 # Add Citizens to the database
-citizens = "citizens.csv"
+citizens = "./citizens.csv"
 
 CSV.foreach(citizens) do |row|
   puts "Citizen #{row[1]} created!"
@@ -22,7 +22,7 @@ days = "days_of_week.csv"
 
 CSV.foreach(days) do |row|
   puts "Dow #{row[1]} created!"
-  DaysOfWeek.create(id_citizen:	row[1], id_lunch: row[2], id_dinner: row[3], id_breakfast: row[4], day: row[5], week_num: row[6])
+  Day.create(users_id:	row[1], lunches_id: row[2], dinners_id: row[3], breakfasts_id: row[4], day: row[5], week_num: row[6])
 end
 
 # Add Ingredients to the database
@@ -62,5 +62,5 @@ stock = "stock.csv"
 
 CSV.foreach(stock) do |row|
   puts "Stock #{row[1]} created!"
-  Stock.create(id_ingredient: row[1],	amount:	row[2], collection_date: row[3])
+  Stock.create(ingredients_id: row[1],	amount:	row[2], collection_date: row[3])
 end
