@@ -1,5 +1,6 @@
 require 'csv'
 
+User.destroy_all
 
 # Add Citizens to the database
 
