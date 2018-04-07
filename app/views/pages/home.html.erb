@@ -4,16 +4,16 @@
     <h2><em>Promoting sustainable food cultivation on New Earth!</em></h2>
     <p><strong>To get started, select your meal plan below...</strong></p>
     <div class="btns">
-      <a href="#" class="btn-start">
+      <%= link_to mealplanner_path, class: "btn-start" do %>
         <i class="fas fa-user"></i>
         &nbsp;
-        Single-person Plan
-      </a>
-      <a href="#" class="btn-start">
+        Individual Plan
+      <% end %>
+      <%= link_to mealplanner_path, class: "btn-start" do %>
         <i class="fas fa-users"></i>
         &nbsp;
         Family Plan
-      </a>
+      <% end %>
     </div>
   </div>
 </div>
