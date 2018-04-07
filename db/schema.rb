@@ -17,13 +17,14 @@ ActiveRecord::Schema.define(version: 20180407154054) do
 
   create_table "breakfasts", force: :cascade do |t|
     t.string "meal_name"
+    t.integer "carbs_ingredients_id"
+    t.integer "fruits_ingredients_id"
+    t.integer "vegetables_ingredients_id"
     t.integer "amount_carbs"
     t.integer "amount_fruits"
     t.integer "amount_vegetables"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "ingredients_id"
-    t.index ["ingredients_id"], name: "index_breakfasts_on_ingredients_id"
   end
 
   create_table "days_of_week", force: :cascade do |t|
@@ -43,13 +44,14 @@ ActiveRecord::Schema.define(version: 20180407154054) do
 
   create_table "dinners", force: :cascade do |t|
     t.string "meal_name"
+    t.integer "carbs_ingredients_id"
+    t.integer "fruits_ingredients_id"
+    t.integer "vegetables_ingredients_id"
     t.integer "amount_carbs"
     t.integer "amount_fruits"
     t.integer "amount_vegetables"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "ingredients_id"
-    t.index ["ingredients_id"], name: "index_dinners_on_ingredients_id"
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -67,13 +69,14 @@ ActiveRecord::Schema.define(version: 20180407154054) do
 
   create_table "lunches", force: :cascade do |t|
     t.string "meal_name"
+    t.integer "carbs_ingredients_id"
+    t.integer "meat_ingredients_id"
+    t.integer "vegetables_ingredients_id"
     t.integer "amount_carbs"
     t.integer "amount_meat"
     t.integer "amount_vegetables"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "ingredients_id"
-    t.index ["ingredients_id"], name: "index_lunches_on_ingredients_id"
   end
 
   create_table "stock", force: :cascade do |t|
@@ -104,12 +107,18 @@ ActiveRecord::Schema.define(version: 20180407154054) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "breakfasts", "ingredients", column: "ingredients_id"
+  add_foreign_key "breakfasts", "ingredients", column: "carbs_ingredients_id"
+  add_foreign_key "breakfasts", "ingredients", column: "fruits_ingredients_id"
+  add_foreign_key "breakfasts", "ingredients", column: "vegetables_ingredients_id"
   add_foreign_key "days_of_week", "breakfasts", column: "breakfasts_id"
   add_foreign_key "days_of_week", "dinners", column: "dinners_id"
   add_foreign_key "days_of_week", "lunches", column: "lunches_id"
   add_foreign_key "days_of_week", "users", column: "users_id"
-  add_foreign_key "dinners", "ingredients", column: "ingredients_id"
-  add_foreign_key "lunches", "ingredients", column: "ingredients_id"
+  add_foreign_key "dinners", "ingredients", column: "carbs_ingredients_id"
+  add_foreign_key "dinners", "ingredients", column: "fruits_ingredients_id"
+  add_foreign_key "dinners", "ingredients", column: "vegetables_ingredients_id"
+  add_foreign_key "lunches", "ingredients", column: "carbs_ingredients_id"
+  add_foreign_key "lunches", "ingredients", column: "meat_ingredients_id"
+  add_foreign_key "lunches", "ingredients", column: "vegetables_ingredients_id"
   add_foreign_key "stock", "ingredients", column: "ingredients_id"
 end

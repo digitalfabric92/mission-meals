@@ -22,7 +22,7 @@ days = "days_of_week.csv"
 
 CSV.foreach(days) do |row|
   puts "Dow #{row[1]} created!"
-  DaysOfWeek.create(carbs_ingredients_id:	row[1], meat_ingredients_id: row[2], vegetables_ingredients_id: row[3], amount_carbs: row[4], amount_meat: row[5], amount_vegetables: row[6])
+  DaysOfWeek.create(id_citizen:	row[1], id_lunch: row[2], id_dinner: row[3], id_breakfast: row[4], day: row[5], week_num: row[6])
 end
 
 # Add Ingredients to the database
