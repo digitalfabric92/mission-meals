@@ -1,1 +1,48 @@
-<h1>Statistics</h1>
+<div class="stats-title" style="text-align: center;color: whitesmoke; text-shadow: 2px 2px rgba(50,50,50,0.5);background-image: linear-gradient(rgba(100,100,100, 0.5), rgba(100,100,100, 0.5) 50%), url('https://cdn.pixabay.com/photo/2016/02/03/08/33/banner-1176678_960_720.jpg'); background-position: center; background-size:cover;padding: 20px 0px;">
+  <h1>Statistics</h1>
+</div>
+<div class="tabs">
+  <a id="fruits" class="tab active" onclick="setActive(this.id)">Fruits</a>
+  <a id="vegetables" class="tab" onclick="setActive(this.id)">Vegetables</a>
+  <a id="meats" class="tab" onclick="setActive(this.id)">Meat</a>
+  <a id="carbs" class="tab" onclick="setActive(this.id)">Carbs</a>
+</div>
+
+<div class="content">
+  <h1>Hello</h1>
+</div>
+
+<script>
+  const tabs = document.querySelectorAll(".tab");
+  const content = document.querySelector(".content");
+
+  const removeCurrentActive = () => {
+    tabs.forEach((tab) => {
+      tab.classList.remove("active");
+    })
+    content.innerHTML = "";
+  }
+
+  const displayStats = "<h1>Hello</h1>";
+
+  const setActive = (selectedTab) => {
+    removeCurrentActive();
+    newActiveTab = document.getElementById(selectedTab);
+    newActiveTab.classList.add("active");
+
+    switch(selectedTab) {
+      case "fruits":
+        content.innerHTML = displayStats;
+        break;
+      case "vegetables":
+        content.innerHTML = displayStats;
+        break;
+      case "meats":
+        content.innerHTML = displayStats;
+        break;
+      case "carbs":
+        content.innerHTML = displayStats;
+        break;
+    }
+  }
+</script>
