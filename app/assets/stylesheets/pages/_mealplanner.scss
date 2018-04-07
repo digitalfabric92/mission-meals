@@ -1,0 +1,137 @@
+html, body {
+  margin: 0px;
+}
+
+.mealplanner-title {
+  background-color: white;
+  text-align: center;
+  h1 {
+    font-size: 50px;
+    font-weight: bold;
+    padding: 20px 0px;
+    margin: 0px;
+  }
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
+  z-index: 99;
+}
+
+.tab {
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  padding: 20px 5px;
+  font-weight: bold;
+  color: white;
+  background-color: green;
+  transition: all 0.5s ease;
+}
+.tab:hover {
+  cursor: pointer;
+  color: green;
+  background-color: white;
+  text-decoration: none;
+}
+
+.active {
+  z-index: 99;
+  color: green;
+  background-color: whitesmoke;
+}
+
+/* Content below tabs */
+.content {
+  height: 400px;
+  font-size: 30px;
+  h1 {
+    margin: 10px 0px;
+  }
+}
+
+
+.mealplanner-btns {
+  width: 80% !important;
+  margin: 30px auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.mealplanner-btn {
+  text-decoration: none;
+  color: white;
+  background-color: green;
+  padding: 10px 25px;
+  border: 3px solid green;
+  border-radius: 40px;
+  transition: all 0.5s ease;
+  &:hover {
+    text-decoration: none;
+    color: green;
+    background-color: white;
+  }
+}
+
+
+.breakfast {
+  background-color: white;
+  width: 100%;
+  padding: 20px 0px;
+  box-shadow: 0px 2px 3px 1px rgba(50,50,50, 0.5);
+  h1 {
+    margin: 5px 30px;
+  }
+}
+
+.lunch {
+  background-color: whitesmoke;
+  width: 100%;
+  padding: 20px 0px;
+  box-shadow: 0px 2px 3px 1px rgba(50,50,50, 0.5);
+  h1 {
+    margin: 5px 30px;
+  }
+}
+
+.dinner {
+  background-color: white;
+  width: 100%;
+  padding: 20px 0px;
+  box-shadow: 0px 2px 3px 1px rgba(50,50,50, 0.5);
+  h1 {
+    margin: 5px 30px;
+  }
+}
+
+
+
+/* Meal Card */
+.meal-card-container {
+  display: flex;
+  justify-content: center;
+}
+
+.meal-card {
+  margin: 20px 10px;
+  position: relative;
+  text-shadow: 1px 1px rgba(50,50,50,0.7);
+  transition: all 0.5s ease;
+}
+.meal-card:hover {
+  transform: translateY(-10px);
+}
+
+.meal-card > img {
+  box-shadow: 0px 2px 3px 1px rgba(50,50,50,0.5);
+}
+
+.meal-card > p {
+  color: white;
+  font-size: 28px;
+  position: absolute;
+  bottom: 0;
+  left: 30px;
+}
