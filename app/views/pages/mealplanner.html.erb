@@ -1,1 +1,88 @@
-<h1>Meal Planner</h1>
+<div class="mealplanner-title">
+  <h1>Meal Planner</h1>
+</div>
+
+<div class="mealplanner-btns">
+  <%= link_to review_path, class: "mealplanner-btn" do %>
+    Select what's left in stock
+  <% end %>
+  <p><em>OR</em></p>
+  <p>Select your meals below:</p>
+</div>
+
+
+<div class="tabs">
+  <a id="mon" class="tab active" onclick="setActive(this.id)">Mon</a>
+  <a id="tue" class="tab" onclick="setActive(this.id)">Tues</a>
+  <a id="wed" class="tab" onclick="setActive(this.id)">Wed</a>
+  <a id="thu" class="tab" onclick="setActive(this.id)">Thurs</a>
+  <a id="fri" class="tab" onclick="setActive(this.id)">Fri</a>
+  <a id="sat" class="tab" onclick="setActive(this.id)">Sat</a>
+  <a id="sun" class="tab" onclick="setActive(this.id)">Sun</a>
+</div>
+
+<div class="content">
+
+  <div class='breakfast'>
+    <h1>Breakfast</h1>
+    <div class="row">
+      <div class="col-xs-6 meal-card-container">
+        <div class="meal-card">
+          <img src="https://static.dezeen.com/uploads/2013/06/dezeen_Beijing-Design-Week-confronts-copying-in-China-with-giant-rubber-duck-300x300.jpg" alt="">
+          <p>Option #1</p>
+        </div>
+      </div>
+      <div class="col-xs-6 meal-card-container">
+        <div class="meal-card">
+          <img src="https://static.dezeen.com/uploads/2013/06/dezeen_Beijing-Design-Week-confronts-copying-in-China-with-giant-rubber-duck-300x300.jpg" alt="">
+          <p>Option #2</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='lunch'>
+    <h1>Lunch</h1>
+    <div class="row">
+      <div class="col-xs-4 meal-card-container">
+        <div class="meal-card">
+          <img src="https://static.dezeen.com/uploads/2013/06/dezeen_Beijing-Design-Week-confronts-copying-in-China-with-giant-rubber-duck-300x300.jpg" alt="">
+          <p>Option #1</p>
+        </div>
+      </div>
+      <div class="col-xs-4 meal-card-container">
+        <div class="meal-card">
+          <img src="https://static.dezeen.com/uploads/2013/06/dezeen_Beijing-Design-Week-confronts-copying-in-China-with-giant-rubber-duck-300x300.jpg" alt="">
+          <p>Option #2</p>
+        </div>
+      </div>
+      <div class="col-xs-4 meal-card-container">
+        <div class="meal-card">
+          <img src="https://static.dezeen.com/uploads/2013/06/dezeen_Beijing-Design-Week-confronts-copying-in-China-with-giant-rubber-duck-300x300.jpg" alt="">
+          <p>Option #3</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='dinner'>
+    <h1>Dinner</h1>
+    <div class="row">
+      <div class="col-xs-4 meal-card-container">
+        <div class="meal-card">
+          <img src="https://static.dezeen.com/uploads/2013/06/dezeen_Beijing-Design-Week-confronts-copying-in-China-with-giant-rubber-duck-300x300.jpg" alt="">
+          <p>Option #1</p>
+        </div>
+      </div>
+      <div class="col-xs-4 meal-card-container">
+        <div class="meal-card">
+          <img src="https://static.dezeen.com/uploads/2013/06/dezeen_Beijing-Design-Week-confronts-copying-in-China-with-giant-rubber-duck-300x300.jpg" alt="">
+          <p>Option #2</p>
+        </div>
+      </div>
+      <div class="col-xs-4 meal-card-container">
+        <div class="meal-card">
+          <img src="https://static.dezeen.com/uploads/2013/06/dezeen_Beijing-Design-Week-confronts-copying-in-China-with-giant-rubber-duck-300x300.jpg" alt="">
+          <p>Option #3</p>
+        </div>
+      </div>
+  </div>
+</div>
