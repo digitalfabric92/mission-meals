@@ -10,10 +10,81 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180407035618) do
+ActiveRecord::Schema.define(version: 20180407154054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "breakfasts", force: :cascade do |t|
+    t.string "meal_name"
+    t.integer "amount_carbs"
+    t.integer "amount_fruits"
+    t.integer "amount_vegetables"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "ingredients_id"
+    t.index ["ingredients_id"], name: "index_breakfasts_on_ingredients_id"
+  end
+
+  create_table "days_of_week", force: :cascade do |t|
+    t.string "day"
+    t.integer "week_num"
+    t.bigint "users_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "breakfasts_id"
+    t.bigint "lunches_id"
+    t.bigint "dinners_id"
+    t.index ["breakfasts_id"], name: "index_days_of_week_on_breakfasts_id"
+    t.index ["dinners_id"], name: "index_days_of_week_on_dinners_id"
+    t.index ["lunches_id"], name: "index_days_of_week_on_lunches_id"
+    t.index ["users_id"], name: "index_days_of_week_on_users_id"
+  end
+
+  create_table "dinners", force: :cascade do |t|
+    t.string "meal_name"
+    t.integer "amount_carbs"
+    t.integer "amount_fruits"
+    t.integer "amount_vegetables"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "ingredients_id"
+    t.index ["ingredients_id"], name: "index_dinners_on_ingredients_id"
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name"
+    t.string "category"
+    t.integer "calories"
+    t.decimal "proteins", precision: 4, scale: 1
+    t.decimal "fats", precision: 4, scale: 1
+    t.decimal "carbs", precision: 4, scale: 1
+    t.integer "prep_time"
+    t.integer "preservation_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "lunches", force: :cascade do |t|
+    t.string "meal_name"
+    t.integer "amount_carbs"
+    t.integer "amount_meat"
+    t.integer "amount_vegetables"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "ingredients_id"
+    t.index ["ingredients_id"], name: "index_lunches_on_ingredients_id"
+  end
+
+  create_table "stock", force: :cascade do |t|
+    t.integer "food_id"
+    t.integer "amount"
+    t.date "collection_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "ingredients_id"
+    t.index ["ingredients_id"], name: "index_stock_on_ingredients_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -33,4 +104,12 @@ ActiveRecord::Schema.define(version: 20180407035618) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "breakfasts", "ingredients", column: "ingredients_id"
+  add_foreign_key "days_of_week", "breakfasts", column: "breakfasts_id"
+  add_foreign_key "days_of_week", "dinners", column: "dinners_id"
+  add_foreign_key "days_of_week", "lunches", column: "lunches_id"
+  add_foreign_key "days_of_week", "users", column: "users_id"
+  add_foreign_key "dinners", "ingredients", column: "ingredients_id"
+  add_foreign_key "lunches", "ingredients", column: "ingredients_id"
+  add_foreign_key "stock", "ingredients", column: "ingredients_id"
 end
