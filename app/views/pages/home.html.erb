@@ -3,16 +3,16 @@
     <h1>Welcome to Mission Meals!&nbsp;<img src="http://www.missionhack.ca/images/rocket.png" alt="" style="height: 90px;"></h1>
     <p><em>Select your meal plan below</em></p>
     <div class="btns">
-      <a href="#" class="btn-start">
+      <%= link_to mealplanner_path, class: "btn-start" do %>
         <i class="fas fa-user"></i>
         &nbsp;
-        Single-person Plan
-      </a>
-      <a href="#" class="btn-start">
+        Individual Plan
+      <% end %>
+      <%= link_to mealplanner_path, class: "btn-start" do %>
         <i class="fas fa-users"></i>
         &nbsp;
         Family Plan
-      </a>
+      <% end %>
     </div>
   </div>
 </div>
