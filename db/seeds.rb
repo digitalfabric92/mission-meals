@@ -50,7 +50,7 @@ csv_dinner = CSV.parse(csv_text_dinner, :encoding => 'ISO-8859-1')
 
 csv_dinner.each do |row|
   puts "Dinner #{row[1]} created!"
-  Dinner.create(carbs_ingredients_id:	row[1], fruits_ingredients_id: row[2], vegetables_ingredients_id: row[3], amount_carbs: row[4], amount_fruits: row[5], amount_vegetables: row[6])
+  Dinner.create(carbs_ingredients_id:	row[1], fruits_ingredients_id: row[2], vegetables_ingredients_id: row[3], amount_carbs: row[4], amount_fruits: row[5], amount_vegetables: row[6], meal_name: row[7])
 end
 
 # Add lunch to the database
@@ -59,7 +59,7 @@ csv_lunch = CSV.parse(csv_text_lunch, :encoding => 'ISO-8859-1')
 
 csv_lunch.each do |row|
   puts "Lunch #{row[1]} created!"
-  Lunch.create(carbs_ingredients_id: row[1], meat_ingredients_id: row[2], vegetables_ingredients_id: row[3], amount_carbs: row[4], amount_meat: row[5], amount_vegetables: row[6])
+  Lunch.create(carbs_ingredients_id: row[1], meat_ingredients_id: row[2], vegetables_ingredients_id: row[3], amount_carbs: row[4], amount_meat: row[5], amount_vegetables: row[6], meal_name: row[7])
 end
 
 # Add breakfast to the database
@@ -68,7 +68,7 @@ csv_breakfast = CSV.parse(csv_text_breakfast, :encoding => 'ISO-8859-1')
 
 csv_breakfast.each do |row|
   puts "Breakfast #{row[1]} created!"
-  Breakfast.create(carbs_ingredients_id: row[1], fruits_ingredients_id: row[2], vegetables_ingredients_id: row[3], amount_carbs: row[4], amount_fruits: row[5], amount_vegetables: row[6])
+  Breakfast.create(carbs_ingredients_id: row[1], fruits_ingredients_id: row[2], vegetables_ingredients_id: row[3], amount_carbs: row[4], amount_fruits: row[5], amount_vegetables: row[6], meal_name: row[7])
 end
 
 # Add days of the week to the database
@@ -80,11 +80,12 @@ csv_days.each do |row|
   Day.create(citizens_id:	row[1], lunches_id: row[2], dinners_id: row[3], breakfasts_id: row[4], day: row[5], week_num: row[6])
 end
 
-# Add stock to the database
-csv_text_stock = File.read(Rails.root.join('lib', 'seeds', 'stock.csv'))
-csv_stock = CSV.parse(csv_text_stock, :encoding => 'ISO-8859-1')
-
-csv_stock.each do |row|
-  puts "Stock #{row[1]} created!"
-  Stock.create(ingredients_id: row[1],	amount:	row[2], collection_date: row[3])
-end
+# Stock not used for dynamic charts
+# # Add stock to the database
+# csv_text_stock = File.read(Rails.root.join('lib', 'seeds', 'stock.csv'))
+# csv_stock = CSV.parse(csv_text_stock, :encoding => 'ISO-8859-1')
+#
+# csv_stock.each do |row|
+#   puts "Stock #{row[1]} created!"
+#   Stock.create(ingredients_id: row[1],	amount:	row[2], collection_date: row[3])
+# end
