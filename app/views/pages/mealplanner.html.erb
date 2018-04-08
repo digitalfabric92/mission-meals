@@ -1,5 +1,5 @@
 <div class="mealplanner-title" style="background-image: linear-gradient(rgba(100,100,100, 0.5), rgba(100,100,100, 0.5) 50%),url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Gudalur_fruit_stand%2C_India.jpg/1024px-Gudalur_fruit_stand%2C_India.jpg'); background-size: cover; background-position: center; height: 200px; color: white; text-shadow: 2px 2px rgba(50,50,50,0.5); display: flex; align-items: center; justify-content: center; box-shadow: 0px 2px 3px 2px rgba(50,50,50,0.5)">
-  <h1 style="font-size: 70px;">Meal Planner</h1>
+  <h1 style="font-size: 70px;">Your Meal Planner</h1>
 </div>
 
 <div class="quick-btns" style="background-color: lightgrey; padding: 20px 0px;">
@@ -7,7 +7,7 @@
   <div class="mealplanner-btns" style="align-items: center; width: 60%; margin: 40px auto 70px;">
 
     <!-- Button trigger modal for recommend -->
-    <button type="button" class="btn mealplanner-btn" data-toggle="modal" data-target="#exampleModal">
+    <button type="button" class="btn mealplanner-btn" data-toggle="modal" data-target="#exampleModal" style='font-size: 22px;'>
       <i class="fas fa-thumbs-up"></i>
       &nbsp;
       Recommended me a meal plan!
@@ -69,10 +69,10 @@
       </div>
     </div>
 
-    <p><em>OR</em></p>
+    <p style='font-size: 24px;'><em>OR</em></p>
 
   <!-- Button trigger modal for inventory -->
-    <button type="button" class="btn mealplanner-btn" data-toggle="modal" data-target="#exampleModal">
+    <button type="button" class="btn mealplanner-btn" data-toggle="modal" data-target="#exampleModal"  style='font-size: 22px;'>
       <i class="fas fa-box-open"></i>
       &nbsp;
       Select a plan with remaining stock
@@ -180,14 +180,16 @@
         </div>
       <% end %>
     </div>
-    <div class='selection' style='display: flex; flex-direction: column; align-items: center; justify-content: center;'>
-      <h2><strong>Selection:</strong></h2>
-      <select name='selection' id='breakfast-selection' style='border-radius: 40px; padding: 5px 10px; margin-bottom: 30px;'>
-        <% @breakfast_meals.each do |meal| %>
-          <option value='<%= meal.meal_name.downcase %>'><%= meal.meal_name %></option>
-        <% end %>
-        <option value='none'>None</option>
-      </select>
+    <div class='selection-box' style='color: white;background-color: rgba(0,144,0, 0.8); padding: 15px 40px; border-radius: 5px; width: 40%; margin: 20px auto; box-shadow: 0px 2px 3px 2px rgba(50,50,50,0.3)'>
+      <div class='selection' style='display: flex; flex-direction: column; align-items: center; justify-content: center;'>
+        <h2><strong><i class="fas fa-utensils"></i>&nbsp;&nbsp;Your selection:</strong></h2>
+        <select name='selection' id='breakfast-selection' style='border-radius: 40px; padding: 5px 10px; color: rgba(0,144,0, 0.8); background-color: white; margin-bottom: 30px; font-size: 25px;'>
+          <% @breakfast_meals.each do |meal| %>
+            <option value='<%= meal.meal_name.downcase %>'><%= meal.meal_name %></option>
+          <% end %>
+          <option value='none'>None</option>
+        </select>
+      </div>
     </div>
   </div>
 
@@ -211,14 +213,16 @@
         </div>
       <% end %>
     </div>
-    <div class='selection' style='display: flex; flex-direction: column; align-items: center; justify-content: center;'>
-      <h2><strong>Selection:</strong></h2>
-      <select name='selection' id='breakfast-selection' style='border-radius: 40px; padding: 5px 10px; margin-bottom: 30px;'>
-        <% @lunch_meals.each do |meal| %>
-          <option value="<%= meal.meal_name.downcase %>"><%= meal.meal_name %></option>
-        <% end %>
-        <option value='none'>None</option>
-      </select>
+    <div class='selection-box' style='color: white;background-color: rgba(0,144,0, 0.8); padding: 15px 40px; border-radius: 5px; width: 40%; margin: 20px auto; box-shadow: 0px 2px 3px 2px rgba(50,50,50,0.3)'>
+      <div class='selection' style='display: flex; flex-direction: column; align-items: center; justify-content: center;'>
+        <h2><strong><i class="fas fa-utensils"></i>&nbsp;&nbsp;Your selection:</strong></h2>
+        <select name='selection' id='lunch-selection' style='border-radius: 40px; padding: 5px 10px; color: rgba(0,144,0, 0.8); background-color: white; margin-bottom: 30px; font-size: 25px;'>
+          <% @lunch_meals.each do |meal| %>
+            <option value='<%= meal.meal_name.downcase %>'><%= meal.meal_name %></option>
+          <% end %>
+          <option value='none'>None</option>
+        </select>
+      </div>
     </div>
   </div>
 
@@ -242,14 +246,16 @@
         </div>
       <% end %>
     </div>
-    <div class='selection' style='display: flex; flex-direction: column; align-items: center; justify-content: center;'>
-      <h2><strong>Selection:</strong></h2>
-      <select name='selection' id='breakfast-selection' style='border-radius: 40px; padding: 5px 10px; margin-bottom: 30px;'>
-        <% @dinner_meals.each do |meal| %>
-          <option value='<%= meal.meal_name.downcase %>'><%= meal.meal_name %></option>
-        <% end %>
-        <option value='none'>None</option>
-      </select>
+    <div class='selection-box' style='color: white;background-color: rgba(0,144,0, 0.8); padding: 15px 40px; border-radius: 5px; width: 40%; margin: 20px auto; box-shadow: 0px 2px 3px 2px rgba(50,50,50,0.3)'>
+      <div class='selection' style='display: flex; flex-direction: column; align-items: center; justify-content: center;'>
+        <h2><strong><i class="fas fa-utensils"></i>&nbsp;&nbsp;Your selection:</strong></h2>
+        <select name='selection' id='dinner-selection' style='border-radius: 40px; padding: 5px 10px; color: rgba(0,144,0, 0.85); background-color: white; margin-bottom: 30px; font-size: 25px;'>
+          <% @dinner_meals.each do |meal| %>
+            <option value='<%= meal.meal_name.downcase %>'><%= meal.meal_name %></option>
+          <% end %>
+          <option value='none'>None</option>
+        </select>
+      </div>
     </div>
   </div>
 
