@@ -13,6 +13,8 @@ Mission meals is a personalized food distribution system made to minimize waste 
 - Jean Debruille
 - [David Wawryko](https://github.com/digitalfabric92)
 
+https://www.hackworks.com/en/missionhackMTL/teams/missionmeals
+
 ## Features
 * Landing page
 * Plan your meal
