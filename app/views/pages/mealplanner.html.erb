@@ -174,9 +174,9 @@
 
   <div class='breakfast'>
     <h1 style='text-align: center;'><strong>Breakfast</strong></h1>
-    <div class='row'>
+    <div class='row' style='margin-left: 20px;'>
       <% @breakfast_meals.each do |meal| %>
-        <div class='col-xs-4 meal-card-container' style='display: flex; align-items: center;'>
+        <div class='col-xs-4 meal-card-container' style='display: flex; align-items: center; justify-content: left;'>
           <div class='meal-card'>
             <img src='<%= meal.image_url %>' alt='' style='height: 140px;width: 200px;''>
           </div>
@@ -205,14 +205,14 @@
 
   <div class='lunch'>
     <h1 style='text-align: center;'><strong>Lunch</strong></h1>
-    <div class='row'>
+    <div class='row'  style='margin-left: 20px;'>
       <% @lunch_meals.each do |meal| %>
-        <div class='col-xs-4 meal-card-container' style='display: flex; align-items: center;''>
+        <div class='col-xs-4 meal-card-container' style='display: flex; align-items: center; justify-content: left;'>
           <div class='meal-card'>
             <img src='<%= meal.image_url %>' alt='' style='height: 140px;width: 200px;''>
           </div>
           <div>
-            <h2 style='font-size: 22px; margin: 5px 0px;'><strong><%= meal.meal_name %></strong></h2>
+            <h2 style='font-size: 22px; margin: 5px 0px; text-align: center;'><strong><%= meal.meal_name %></strong></h2>
             <ul style='font-size: 16px; margin-left: -10px;'>
               <li>Calories: <%= @ingredients.find(meal.carbs_ingredients_id).calories + @ingredients.find(meal.vegetables_ingredients_id).calories + @ingredients.find(meal.meat_ingredients_id).calories %>g</li>
               <li>Fats: <%= @ingredients.find(meal.carbs_ingredients_id).fats + @ingredients.find(meal.vegetables_ingredients_id).fats + @ingredients.find(meal.meat_ingredients_id).fats %>g</li>
@@ -236,14 +236,14 @@
 
   <div class='dinner'>
     <h1 style='text-align: center;'><strong>Dinner</strong></h1>
-    <div class='row'>
+    <div class='row' style='margin-left: 20px;'>
       <% @dinner_meals.each do |meal| %>
-        <div class='col-xs-4 meal-card-container' style='display: flex; align-items: center;''>
+        <div class='col-xs-4 meal-card-container' style='display: flex; align-items: center; justify-content: left;'>
           <div class='meal-card'>
             <img src='<%= meal.image_url %>' alt='' style='height: 140px;width: 200px;''>
           </div>
           <div>
-            <h2 style='font-size: 22px; margin: 5px 0px;'><strong><%= meal.meal_name %></strong></h2>
+            <h2 style='font-size: 22px; margin: 5px 0px; text-align: center;'><strong><%= meal.meal_name %></strong></h2>
             <ul style='font-size: 16px; margin-left: -10px;'>
               <li>Calories: <%= @ingredients.find(meal.carbs_ingredients_id).calories + @ingredients.find(meal.vegetables_ingredients_id).calories + @ingredients.find(meal.fruits_ingredients_id).calories %>g</li>
               <li>Fats: <%= @ingredients.find(meal.carbs_ingredients_id).fats + @ingredients.find(meal.vegetables_ingredients_id).fats + @ingredients.find(meal.fruits_ingredients_id).fats %>g</li>
@@ -282,7 +282,7 @@
               <span aria-hidden='true'>&times;</span>
             </button>
           </div>
-          <div class='modal-body' style='color: green; height: 450px;'>
+          <div class='modal-body' style='color: green; height: 450px; text-align: center;'>
             <h3 style='margin: 10px auto 20px; text-align: center; font-weight: bold;'>Confirm your selection</h3>
             <table style='width: 95%;'>
               <thead>
