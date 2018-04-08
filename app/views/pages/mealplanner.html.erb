@@ -40,33 +40,21 @@
               <tbody>
                 <tr>
                   <td><em>Breakfast</em></td>
-                  <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; padding: 10px 0px;height: 100px;"></td>
-                  <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
-                  <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
-                  <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
-                  <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
-                  <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
-                  <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
+                  <% @breakfast_meals.each do |meal| %>
+                    <td><img src="<%= meal.image_url %>" alt="" style="width: 100px; padding: 10px 0px;height: 100px;"></td>
+                  <% end %>
                 </tr>
                 <tr>
                   <td><em>Lunch</em></td>
-                  <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZ3X8ob9jiSv6RCjwZMMGWkQ0YEpLXxTqJXQaoTkuc0a4TTlzlg" alt="" style="width: 100px;"></td>
-                  <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZ3X8ob9jiSv6RCjwZMMGWkQ0YEpLXxTqJXQaoTkuc0a4TTlzlg" alt="" style="width: 100px;"></td>
-                  <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZ3X8ob9jiSv6RCjwZMMGWkQ0YEpLXxTqJXQaoTkuc0a4TTlzlg" alt="" style="width: 100px;"></td>
-                  <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZ3X8ob9jiSv6RCjwZMMGWkQ0YEpLXxTqJXQaoTkuc0a4TTlzlg" alt="" style="width: 100px;"></td>
-                  <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZ3X8ob9jiSv6RCjwZMMGWkQ0YEpLXxTqJXQaoTkuc0a4TTlzlg" alt="" style="width: 100px;"></td>
-                  <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWF2SCpElmlsT_p9M3JYFisPfVOVDvdyMKg0IKqW-fm5d82Bqykg" alt="" style="width: 100px;"></td>
-                  <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWF2SCpElmlsT_p9M3JYFisPfVOVDvdyMKg0IKqW-fm5d82Bqykg" alt="" style="width: 100px;"></td>
+                  <% @lunch_meals.each do |meal| %>
+                    <td><img src="<%= meal.image_url %>" alt="" style="width: 100px;"></td>
+                  <% end %>
                 </tr>
                 <tr>
                   <td><em>Dinner</em></td>
-                  <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Healthy_dinner.jpg/770px-Healthy_dinner.jpg" alt="" style="width: 100px; padding: 10px 0px;"></td>
-                  <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Healthy_dinner.jpg/770px-Healthy_dinner.jpg" alt="" style="width: 100px; padding: 10px 0px;"></td>
-                  <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Healthy_dinner.jpg/770px-Healthy_dinner.jpg" alt="" style="width: 100px; padding: 10px 0px;"></td>
-                  <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Healthy_dinner.jpg/770px-Healthy_dinner.jpg" alt="" style="width: 100px; padding: 10px 0px;"></td>
-                  <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Healthy_dinner.jpg/770px-Healthy_dinner.jpg" alt="" style="width: 100px; padding: 10px 0px;"></td>
-                  <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8wWgeVkWC48MKVAr0XbRm-sAQZ2kgM3w57vqGqfFRWOCo35dv" alt="" style="width: 100px; padding: 10px 0px;"></td>
-                  <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8wWgeVkWC48MKVAr0XbRm-sAQZ2kgM3w57vqGqfFRWOCo35dv" alt="" style="width: 100px; padding: 10px 0px;"></td>
+                  <% @dinner_meals.each do |meal| %>
+                    <td><img src="<%= meal.image_url %>" alt="" style="width: 100px; padding: 10px 0px;"></td>
+                  <% end %>
                 </tr>
               </tbody>
             </table>
