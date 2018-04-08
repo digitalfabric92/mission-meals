@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20180408011639) do
     t.integer "amount_carbs"
     t.integer "amount_fruits"
     t.integer "amount_vegetables"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -56,6 +57,7 @@ ActiveRecord::Schema.define(version: 20180408011639) do
     t.integer "amount_carbs"
     t.integer "amount_fruits"
     t.integer "amount_vegetables"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -81,6 +83,7 @@ ActiveRecord::Schema.define(version: 20180408011639) do
     t.integer "amount_carbs"
     t.integer "amount_meat"
     t.integer "amount_vegetables"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
