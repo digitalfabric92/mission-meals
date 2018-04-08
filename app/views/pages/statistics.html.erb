@@ -7,14 +7,24 @@
   <% end %>
 </div>
 
-<div style="display: flex; flex-direction: column; justify-content: center;">
-  <h2 style="text-align: center; margin: 30px auto 10px;">Select the data you would like to view:</h2>
-  <select name="category-select" id="category-select" style="border-radius:50px; margin: 20px auto; padding: 10px 30px; background-color: white; box-shadow: 0px 2px 3px 2px rgba(50,50,50,0.3);" onchange="onSelectCategory()">
-    <option value="vegetables">Vegetables</option>
-    <option value="meat">Meats</option>
-    <option value="fruit">Fruits</option>
-    <option value="carbs">Carbs</option>
-  </select>
+<div class="select-boxes" style="display: flex; justify-content: space-around;">
+  <div style="display: flex; flex-direction: column; justify-content: center;">
+    <h2 style="text-align: center; margin: 30px auto 0px; font-size: 26px;"><i class="fas fa-lemon"></i>&nbsp;&nbsp;Select the ingredients you would like to view:</h2>
+    <select name="category-select" id="category-select" style="border-radius:50px; margin: 20px auto; padding: 10px 30px; background-color: white; box-shadow: 0px 2px 3px 2px rgba(50,50,50,0.3);" onchange="onSelectCategory()">
+      <option value="vegetables">Vegetables</option>
+      <option value="meat">Meats</option>
+      <option value="fruit">Fruits</option>
+      <option value="carbs">Carbs</option>
+    </select>
+  </div>
+  <div style="display: flex; flex-direction: column; justify-content: center;">
+    <h2 style="text-align: center; margin: 30px auto 0px; font-size: 26px;"><i class="fas fa-users"></i>&nbsp;&nbsp;View last week's meals popularity:</h2>
+    <select name="meal-select" id="meal-select" style="border-radius:50px; margin: 20px auto; padding: 10px 30px; background-color: white; box-shadow: 0px 2px 3px 2px rgba(50,50,50,0.3);" onchange="onSelectMealName()">
+      <option value="breakfast">Breakfast</option>
+      <option value="lunch">Lunch</option>
+      <option value="dinner">Dinner</option>
+    </select>
+  </div>
 </div>
 
 
@@ -43,9 +53,21 @@ var categoryName = document.getElementById("category-select").value;
 
 function onSelectCategory() {
   categoryName = document.getElementById("category-select").value;
-  window.location.reload(true);
-  console.log(categoryName);
+  //window.location.reload(true);
+  //console.log(categoryName);
+  filtered = data.foods.filter(function (x) { return x.category == categoryName && x.lastLastWeekConsumption != 0 && x.lastWeekConsumption != 0 });
+
+  d = [filtered.map(function (x) { return { "axis": x.name, "value": x.lastWeekConsumption / x.remainingStock } }),
+        filtered.map(function (x) { return { "axis": x.name, "value": (x.lastWeekConsumption - x.lastLastWeekConsumption) / x.lastLastWeekConsumption } })];
+  drawVisualization();
+  RadarChart.draw("#chart1", [d[0]], mycfg);
 }
+
+function onSelectMealName() {
+  selectedMealName = document.getElementById('meal-select').value;
+  drawBreakfastChart();
+}
+
 
 var RadarChart = {
   draw: function(id, d, options){
@@ -555,18 +577,20 @@ google.charts.setOnLoadCallback(drawVisualization);
 
 function drawVisualization() {
     var dataArray = [];
-    dataArray.push(['Ingredient', 'Value1', 'Value2']);
+    dataArray.push(['Ingredient', 'Increase', 'Decrease']);
     for(var x = 0; x < d[1].length; x++)
         dataArray.push([d[1][x].axis, Math.max(0,d[1][x].value), Math.min(0,d[1][x].value)]);
     var data = google.visualization.arrayToDataTable(dataArray);
-
+    var max = Math.max.apply(Math,d[1].map(function(o){return o.y;}));
+    var min = Math.min.apply(Math,d[1].map(function(o){return o.y;}));;
     var options = {
 
         title: 'Consumption Variation',
         legend: 'none',
         hAxis: {
-            minValue: -0.15,
-            maxValue: 0.15
+            format: 'percent',
+            minValue: max,
+            maxValue: min
         },
         bar: { groupWidth: "95%" }
     };
@@ -576,23 +600,43 @@ function drawVisualization() {
 }
       </script>
       <script>
-
+        var selectedMealName = "breakfast";
+var mealsNames = {
+  "breakfast":
+  {
+    "title":"Last Week\'s Popular Breakfasts",
+    "column": "Breakfast",
+    "names":["Fruit Cereal", "Avocado Toast", "Fruit Shake", "Carrot Cake", "Sunrise Cereal", "Pina Colada Chia", "Kale & Pear Shake"]
+  },"lunch":
+  {
+    "title":"Last Week\'s Popular Lunch",
+    "column": "Lunch",
+    "names":["Sweet & Sour Chickpeas", "Chicken Stir Fry", "Salmon & Harverst Rice", "Pesto Pasta with Chicken", "Avocado Salmon Salad", "Simple Chicken Sandwich","Corned Beef on Toast"]
+  },"dinner":
+  {
+    "title":"Last Week\'s Popular Dinner",
+    "column": "Dinner",
+    "names":["Tropical Fruit Salad", "Fruit Bowl", "Vegetable Stir Fry", "Mixed Vegetable Soup", "Quick Vegetarian Spaghetti", "Eggplant & Grilled Vegetables ", "3 Vegetable Scramble"]
+  }
+}
 google.charts.load("current", { packages: ["corechart"] });
-google.charts.setOnLoadCallback(drawChart);
-function drawChart() {
+google.charts.setOnLoadCallback(drawBreakfastChart);
+function drawBreakfastChart() {
+
     var pieData = google.visualization.arrayToDataTable([
-      ['Breakfast', 'Consumed'],
-      ['Option1', data.mealsConsumed[1].breakfast[0]],
-      ['Option2', data.mealsConsumed[1].breakfast[1]],
-      ['Option3', data.mealsConsumed[1].breakfast[2]],
-      ['Option4', data.mealsConsumed[1].breakfast[3]],
-      ['Option5', data.mealsConsumed[1].breakfast[4]],
-      ['Option6', data.mealsConsumed[1].breakfast[5]],
-      ['Option7', data.mealsConsumed[1].breakfast[6]],
+      [mealsNames[selectedMealName].column, 'Consumed'],
+      [mealsNames[selectedMealName].names[0], data.mealsConsumed[1][selectedMealName][0]],
+      [mealsNames[selectedMealName].names[1], data.mealsConsumed[1][selectedMealName][1]],
+      [mealsNames[selectedMealName].names[2], data.mealsConsumed[1][selectedMealName][2]],
+      [mealsNames[selectedMealName].names[3], data.mealsConsumed[1][selectedMealName][3]],
+      [mealsNames[selectedMealName].names[4], data.mealsConsumed[1][selectedMealName][4]],
+      [mealsNames[selectedMealName].names[5], data.mealsConsumed[1][selectedMealName][5]],
+      [mealsNames[selectedMealName].names[6], data.mealsConsumed[1][selectedMealName][6]],
     ]);
 
     var options = {
-        title: 'Last Week\'s Popular Breakfasts',
+      legend:{textStyle:{fontSize:'11'}},
+        title: mealsNames[selectedMealName].title,
         pieHole: 0.3,
     };
 
