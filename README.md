@@ -14,12 +14,12 @@ Mission meals is a personalized food distribution system made to minimize waste 
 - [David Wawryko](https://github.com/digitalfabric92)
 
 ## Features
-*Landing page
-*Plan your meal
-*Review your meal
-*Confirmation page
-*Statistics
-*Default meal planning
+* Landing page
+* Plan your meal
+* Review your meal
+* Confirmation page
+* Statistics
+* Default meal planning
 
 ## Setup
 1. Fork & Clone
@@ -28,12 +28,12 @@ Mission meals is a personalized food distribution system made to minimize waste 
 4. Run `bin/rails s` to start the server
 
 ## Future Developments
-*Create new recipes
-*Family orders
-*Communities orders
-*Birthdays special
-*Diet specification
-*Health specification
+* Create new recipes
+* Family orders
+* Communities orders
+* Birthdays special
+* Diet specification
+* Health specification
 
 ## Inspiration
 
