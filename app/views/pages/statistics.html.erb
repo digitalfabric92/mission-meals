@@ -1,63 +1,604 @@
-<div class="stats-title" style="position: relative;text-align: center;color: whitesmoke; text-shadow: 2px 2px rgba(50,50,50,0.5);background-image: linear-gradient(rgba(100,100,100, 0.5), rgba(100,100,100, 0.5) 50%), url('https://upload.wikimedia.org/wikipedia/commons/9/95/Banner-earth-notext.png'); background-position: center; background-size:cover;padding: 20px 0px;">
-  <h1 style="font-size: 80px;">Statistics</h1>
-  <%= link_to home_path, style:"text-decoration: none; color: whitesmoke" do %>
+<div class="stats-title" style="position: relative;text-align: center;color: whitesmoke; text-shadow: 2px 2px rgba(50,50,50,0.5);background-image: linear-gradient(rgba(100,100,100, 0.5), rgba(100,100,100, 0.5) 50%), url('https://upload.wikimedia.org/wikipedia/commons/9/95/Banner-earth-notext.png'); background-position: center; background-size:cover;padding: 50px 0px;">
+  <h1 style="font-size: 80px;">Colony Food Stock Statistics</h1>
+  <%= link_to home_path, style:"text-decoration: none; color: lightblue" do %>
     <em>Return to homepage</em>
     &nbsp;
     <i class="fas fa-undo-alt"></i>
   <% end %>
 </div>
-<div class="tabs">
-  <a id="fruits" class="tab active" onclick="setActive(this.id)">Fruits</a>
-  <a id="vegetables" class="tab" onclick="setActive(this.id)">Vegetables</a>
-  <a id="meats" class="tab" onclick="setActive(this.id)">Meat</a>
-  <a id="carbs" class="tab" onclick="setActive(this.id)">Carbs</a>
+
+<div style="display: flex; flex-direction: column; justify-content: center;">
+  <h2 style="text-align: center; margin: 30px auto 10px;">Select the data you would like to view:</h2>
+  <select name="category-select" id="category-select" style="border-radius:50px; margin: 20px auto; padding: 10px 30px; background-color: white; box-shadow: 0px 2px 3px 2px rgba(50,50,50,0.3);" onchange="onSelectCategory()">
+    <option value="vegetables">Vegetables</option>
+    <option value="meat">Meats</option>
+    <option value="fruit">Fruits</option>
+    <option value="carbs">Carbs</option>
+  </select>
 </div>
 
-<div class="content">
-  <button class='btn btn-primary' type='button' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample'>
-    Apples
-  </button>
-  <div class='collapse' id='collapseExample'>
-    <div class='card card-body'>
-      <img src='https://cdn.kastatic.org/ka-perseus-graphie/e85a5b3098287a46307b1ce1a3163a608485bd6b.svg' alt=''>
+
+<div class="vegetables-info" style="background-color: white; box-shadow: 0px 2px 3px 2px rgba(50,50,50,0.3);">
+    <div id="body" style="display: flex;">
+      <div id="chart1" style="background-color: white; margin-top: 20px;"></div>
+      <div id="barchart" style="width: 400px; min-height: 400px;"></div>
+      <div id="donutchart" style="width: 400px; height: 400px;"></div>
     </div>
-  </div>
-</div>
 
-<script>
-  const fruits = "<button class='btn btn-primary' type='button' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample'>Apples</button><div class='collapse' id='collapseExample'><div class='card card-body'><img src='https://cdn.kastatic.org/ka-perseus-graphie/e85a5b3098287a46307b1ce1a3163a608485bd6b.svg' alt=''></div></div>"
+<script src="https://d3js.org/d3.v4.min.js"></script>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+    <script>
+        //Practically all this code comes from https://github.com/alangrafu/radar-chart-d3
+//I only made some additions and aesthetic adjustments to make the chart look better
+//(of course, that is only my point of view)
+//Such as a better placement of the titles at each line end,
+//adding numbers that reflect what each circular level stands for
+//Not placing the last level and slight differences in color
+//
+//For a bit of extra information check the blog about it:
+//http://nbremer.blogspot.nl/2013/09/making-d3-radar-chart-look-bit-better.html
 
-  const tabs = document.querySelectorAll(".tab");
-  const content = document.querySelector(".content");
+var categoryName = document.getElementById("category-select").value;
 
-  const removeCurrentActive = () => {
-    tabs.forEach((tab) => {
-      tab.classList.remove("active");
-    })
-    content.innerHTML = "";
-  }
+function onSelectCategory() {
+  categoryName = document.getElementById("category-select").value;
+  window.location.reload(true);
+  console.log(categoryName);
+}
 
-  const displayStats = "<h1>Hello</h1>";
+var RadarChart = {
+  draw: function(id, d, options){
+  var cfg = {
+   radius: 5,
+   w: 600,
+   h: 600,
+   factor: 1,
+   factorLegend: .85,
+   levels: 3,
+   maxValue: 0,
+   radians: 2 * Math.PI,
+   opacityArea: 0.5,
+   ToRight: 5,
+   TranslateX: 80,
+   TranslateY: 30,
+   ExtraWidthX: 100,
+   ExtraWidthY: 100,
+   color: d3.scaleOrdinal(d3.schemeCategory10)
+  };
 
-  const setActive = (selectedTab) => {
-    removeCurrentActive();
-    newActiveTab = document.getElementById(selectedTab);
-    newActiveTab.classList.add("active");
-
-    switch(selectedTab) {
-      case "fruits":
-        content.innerHTML = fruits;
-        break;
-      case "vegetables":
-        content.innerHTML = displayStats;
-        break;
-      case "meats":
-        content.innerHTML = displayStats;
-        break;
-      case "carbs":
-        content.innerHTML = displayStats;
-        break;
+  if('undefined' !== typeof options){
+    for(var i in options){
+    if('undefined' !== typeof options[i]){
+      cfg[i] = options[i];
+    }
     }
   }
-</script>
+  cfg.maxValue = Math.max(cfg.maxValue, d3.max(d, function(i){return d3.max(i.map(function(o){return o.value;}))}));
+  var allAxis = (d[0].map(function(i, j){return i.axis}));
+  var total = allAxis.length;
+  var radius = cfg.factor*Math.min(cfg.w/2, cfg.h/2);
+  var Format = d3.format('%');
+  d3.select(id).select("svg").remove();
+
+  var g = d3.select(id)
+      .append("svg")
+      .attr("width", cfg.w+cfg.ExtraWidthX)
+      .attr("height", cfg.h+cfg.ExtraWidthY)
+      .append("g")
+      .attr("transform", "translate(" + cfg.TranslateX + "," + cfg.TranslateY + ")");
+      ;
+
+  var tooltip;
+
+  //Circular segments
+  for(var j=0; j<cfg.levels-1; j++){
+    var levelFactor = cfg.factor*radius*((j+1)/cfg.levels);
+    g.selectAll(".levels")
+     .data(allAxis)
+     .enter()
+     .append("svg:line")
+     .attr("x1", function(d, i){return levelFactor*(1-cfg.factor*Math.sin(i*cfg.radians/total));})
+     .attr("y1", function(d, i){return levelFactor*(1-cfg.factor*Math.cos(i*cfg.radians/total));})
+     .attr("x2", function(d, i){return levelFactor*(1-cfg.factor*Math.sin((i+1)*cfg.radians/total));})
+     .attr("y2", function(d, i){return levelFactor*(1-cfg.factor*Math.cos((i+1)*cfg.radians/total));})
+     .attr("class", "line")
+     .style("stroke", "grey")
+     .style("stroke-opacity", "0.75")
+     .style("stroke-width", "0.3px")
+     .attr("transform", "translate(" + (cfg.w/2-levelFactor) + ", " + (cfg.h/2-levelFactor) + ")");
+  }
+
+  //Text indicating at what % each level is
+  for(var j=0; j<cfg.levels; j++){
+    var levelFactor = cfg.factor*radius*((j+1)/cfg.levels);
+    g.selectAll(".levels")
+     .data([1]) //dummy data
+     .enter()
+     .append("svg:text")
+     .attr("x", function(d){return levelFactor*(1-cfg.factor*Math.sin(0));})
+     .attr("y", function(d){return levelFactor*(1-cfg.factor*Math.cos(0));})
+     .attr("class", "legend")
+     .style("font-family", "sans-serif")
+     .style("font-size", "10px")
+     .attr("transform", "translate(" + (cfg.w/2-levelFactor + cfg.ToRight) + ", " + (cfg.h/2-levelFactor) + ")")
+     .attr("fill", "#737373")
+     .text(Format((j+1)*cfg.maxValue/cfg.levels));
+  }
+
+  series = 0;
+
+  var axis = g.selectAll(".axis")
+      .data(allAxis)
+      .enter()
+      .append("g")
+      .attr("class", "axis");
+
+  axis.append("line")
+    .attr("x1", cfg.w/2)
+    .attr("y1", cfg.h/2)
+    .attr("x2", function(d, i){return cfg.w/2*(1-cfg.factor*Math.sin(i*cfg.radians/total));})
+    .attr("y2", function(d, i){return cfg.h/2*(1-cfg.factor*Math.cos(i*cfg.radians/total));})
+    .attr("class", "line")
+    .style("stroke", "grey")
+    .style("stroke-width", "1px");
+
+  axis.append("text")
+    .attr("class", "legend")
+    .text(function(d){return d})
+    .style("font-family", "sans-serif")
+    .style("font-size", "14px")
+    .attr("text-anchor", "middle")
+    .attr("dy", "1.5em")
+    .attr("transform", function(d, i){return "translate(0, -10)"})
+    .attr("x", function(d, i){return cfg.w/2*(1-cfg.factorLegend*Math.sin(i*cfg.radians/total))-60*Math.sin(i*cfg.radians/total);})
+    .attr("y", function(d, i){return cfg.h/2*(1-Math.cos(i*cfg.radians/total))-20*Math.cos(i*cfg.radians/total);});
+
+
+  d.forEach(function(y, x){
+    dataValues = [];
+    g.selectAll(".nodes")
+    .data(y, function(j, i){
+      dataValues.push([
+      cfg.w/2*(1-(parseFloat(Math.max(j.value, 0))/cfg.maxValue)*cfg.factor*Math.sin(i*cfg.radians/total)),
+      cfg.h/2*(1-(parseFloat(Math.max(j.value, 0))/cfg.maxValue)*cfg.factor*Math.cos(i*cfg.radians/total))
+      ]);
+    });
+    dataValues.push(dataValues[0]);
+    g.selectAll(".area")
+           .data([dataValues])
+           .enter()
+           .append("polygon")
+           .attr("class", "radar-chart-serie"+series)
+           .style("stroke-width", "2px")
+           .style("stroke", cfg.color(series))
+           .attr("points",function(d) {
+             var str="";
+             for(var pti=0;pti<d.length;pti++){
+               str=str+d[pti][0]+","+d[pti][1]+" ";
+             }
+             return str;
+            })
+           .style("fill", function(j, i){return cfg.color(series)})
+           .style("fill-opacity", cfg.opacityArea)
+           .on('mouseover', function (d){
+                    z = "polygon."+d3.select(this).attr("class");
+                    g.selectAll("polygon")
+                     .transition(200)
+                     .style("fill-opacity", 0.1);
+                    g.selectAll(z)
+                     .transition(200)
+                     .style("fill-opacity", .7);
+                    })
+           .on('mouseout', function(){
+                    g.selectAll("polygon")
+                     .transition(200)
+                     .style("fill-opacity", cfg.opacityArea);
+           });
+    series++;
+  });
+  series=0;
+
+
+  d.forEach(function(y, x){
+    g.selectAll(".nodes")
+    .data(y).enter()
+    .append("svg:circle")
+    .attr("class", "radar-chart-serie"+series)
+    .attr('r', cfg.radius)
+    .attr("alt", function(j){return Math.max(j.value, 0)})
+    .attr("cx", function(j, i){
+      dataValues.push([
+      cfg.w/2*(1-(parseFloat(Math.max(j.value, 0))/cfg.maxValue)*cfg.factor*Math.sin(i*cfg.radians/total)),
+      cfg.h/2*(1-(parseFloat(Math.max(j.value, 0))/cfg.maxValue)*cfg.factor*Math.cos(i*cfg.radians/total))
+    ]);
+    return cfg.w/2*(1-(Math.max(j.value, 0)/cfg.maxValue)*cfg.factor*Math.sin(i*cfg.radians/total));
+    })
+    .attr("cy", function(j, i){
+      return cfg.h/2*(1-(Math.max(j.value, 0)/cfg.maxValue)*cfg.factor*Math.cos(i*cfg.radians/total));
+    })
+    .attr("data-id", function(j){return j.axis})
+    .style("fill", cfg.color(series)).style("fill-opacity", .9)
+    .on('mouseover', function (d){
+          newX =  parseFloat(d3.select(this).attr('cx')) - 10;
+          newY =  parseFloat(d3.select(this).attr('cy')) - 5;
+
+          tooltip
+            .attr('x', newX)
+            .attr('y', newY)
+            .text(Format(d.value))
+            .transition(200)
+            .style('opacity', 1);
+
+          z = "polygon."+d3.select(this).attr("class");
+          g.selectAll("polygon")
+            .transition(200)
+            .style("fill-opacity", 0.1);
+          g.selectAll(z)
+            .transition(200)
+            .style("fill-opacity", .7);
+          })
+    .on('mouseout', function(){
+          tooltip
+            .transition(200)
+            .style('opacity', 0);
+          g.selectAll("polygon")
+            .transition(200)
+            .style("fill-opacity", cfg.opacityArea);
+          })
+    .append("svg:title")
+    .text(function(j){return Math.max(j.value, 0)});
+
+    series++;
+  });
+  //Tooltip
+  tooltip = g.append('text')
+         .style('opacity', 0)
+         .style('font-family', 'sans-serif')
+         .style('font-size', '13px');
+  }
+};
+    </script>
+      <script>
+
+var w = 275,
+  h = 275;
+var data = {
+    "foods": [
+           {
+               "name": "banana",
+               "category": "fruit",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 0,
+               "lastLastWeekConsumption": 0
+           },
+           {
+               "name": "avocado",
+               "category": "fruit",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 19293,
+               "lastLastWeekConsumption": 16815
+           },
+           {
+               "name": "lime",
+               "category": "fruit",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 58842,
+               "lastLastWeekConsumption": 54324
+           },
+           {
+               "name": "coconut",
+               "category": "fruit",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 50054,
+               "lastLastWeekConsumption": 55686
+           },
+           {
+               "name": "orange",
+               "category": "fruit",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 11918,
+               "lastLastWeekConsumption": 11682
+           },
+           {
+               "name": "apple",
+               "category": "fruit",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 33015,
+               "lastLastWeekConsumption": 30568
+           },
+           {
+               "name": "blueberrys",
+               "category": "fruit",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 16700,
+               "lastLastWeekConsumption": 15531
+           },
+           {
+               "name": "pear",
+               "category": "fruit",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 32242,
+               "lastLastWeekConsumption": 31807
+           },
+           {
+               "name": "tomatoes",
+               "category": "vegetables",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 4250,
+               "lastLastWeekConsumption": 5050
+           },
+           {
+               "name": "mushrooms",
+               "category": "vegetables",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 12490,
+               "lastLastWeekConsumption": 14234
+           },
+           {
+               "name": "cucumber",
+               "category": "vegetables",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 31591,
+               "lastLastWeekConsumption": 30551
+           },
+           {
+               "name": "bell pepper",
+               "category": "vegetables",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 46059,
+               "lastLastWeekConsumption": 48139
+           },
+           {
+               "name": "carrot",
+               "category": "vegetables",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 0,
+               "lastLastWeekConsumption": 0
+           },
+           {
+               "name": "eggplant",
+               "category": "vegetables",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 41734,
+               "lastLastWeekConsumption": 42664
+           },
+           {
+               "name": "celery",
+               "category": "vegetables",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 11004,
+               "lastLastWeekConsumption": 10003
+           },
+           {
+               "name": "lettuce",
+               "category": "vegetables",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 22272,
+               "lastLastWeekConsumption": 20648
+           },
+           {
+               "name": "kale",
+               "category": "vegetables",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 0,
+               "lastLastWeekConsumption": 0
+           },
+           {
+               "name": "brocoli",
+               "category": "vegetables",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 0,
+               "lastLastWeekConsumption": 0
+           },
+           {
+               "name": "garlic",
+               "category": "vegetables",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 16284,
+               "lastLastWeekConsumption": 15930
+           },
+           {
+               "name": "potatoes",
+               "category": "carbs",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 109114,
+               "lastLastWeekConsumption": 110549
+           },
+           {
+               "name": "chickpeas",
+               "category": "vegetables",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 17000,
+               "lastLastWeekConsumption": 15291
+           },
+           {
+               "name": "lentils",
+               "category": "vegetables",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 12915,
+               "lastLastWeekConsumption": 14309
+           },
+           {
+               "name": "salmon",
+               "category": "meat",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 88887,
+               "lastLastWeekConsumption": 90826
+           },
+           {
+               "name": "beef",
+               "category": "meat",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 85358,
+               "lastLastWeekConsumption": 85581
+           },
+           {
+               "name": "chicken",
+               "category": "meat",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 29184,
+               "lastLastWeekConsumption": 27056
+           },
+           {
+               "name": "bread",
+               "category": "carbs",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 53480,
+               "lastLastWeekConsumption": 54211
+           },
+           {
+               "name": "rice",
+               "category": "carbs",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 110753,
+               "lastLastWeekConsumption": 107952
+           },
+           {
+               "name": "pasta",
+               "category": "carbs",
+               "remainingStock": 800000,
+               "lastWeekConsumption": 72283,
+               "lastLastWeekConsumption": 73556
+           }],
+    "mealsConsumed": [
+        {
+            "breakfast": [88, 99, 85, 105, 122, 101, 100],
+            "lunch": [97, 112, 92, 96, 114, 99, 90],
+            "dinner": [95, 92, 90, 115, 110, 100, 98]
+        }, {
+            "breakfast": [106, 109, 101, 105, 87, 99, 93],
+            "lunch": [108, 107, 90, 89, 112, 97, 97],
+            "dinner": [109, 112, 104, 96, 92, 81, 106]
+        }]
+};
+var colorscale = d3.scaleOrdinal(d3.schemeCategory10);
+
+//Legend titles
+var LegendOptions = ["Consumed Stock"];
+
+
+//Data
+var filtered = data.foods.filter(function (x) { return x.category == categoryName && x.lastLastWeekConsumption != 0 && x.lastWeekConsumption != 0 });
+
+var d = [filtered.map(function (x) { return { "axis": x.name, "value": x.lastWeekConsumption / x.remainingStock } }),
+        filtered.map(function (x) { return { "axis": x.name, "value": (x.lastWeekConsumption - x.lastLastWeekConsumption) / x.lastLastWeekConsumption } })];
+
+//Options for the Radar chart, other than default
+var mycfg = {
+    w: w,
+    h: h,
+    maxValue: 0.10,
+    levels: 5,
+    ExtraWidthX: 200
+}
+
+//Call function to draw the Radar chart
+//Will expect that data is in %'s
+RadarChart.draw("#chart1", [d[0]], mycfg);
+
+////////////////////////////////////////////
+/////////// Initiate legend ////////////////
+////////////////////////////////////////////
+
+var svg = d3.select('#body')
+    .selectAll('svg')
+    .append('svg')
+    .attr("width", w + 300)
+    .attr("height", h)
+
+//Create the title for the legend
+var text = svg.append("text")
+    .attr("class", "title")
+    .attr('transform', 'translate(90,0)')
+    .attr("x", w - 70)
+    .attr("y", 10)
+    .attr("font-size", "12px")
+    .attr("fill", "#404040")
+    .text("Ingredients Statistics");
+
+//Initiate Legend
+var legend = svg.append("g")
+    .attr("class", "legend")
+    .attr("height", 100)
+    .attr("width", 200)
+    .attr('transform', 'translate(90,20)')
+;
+//Create colour squares
+legend.selectAll('rect')
+  .data(LegendOptions)
+  .enter()
+  .append("rect")
+  .attr("x", w - 65)
+  .attr("y", function (d, i) { return i * 20; })
+  .attr("width", 10)
+  .attr("height", 10)
+  .style("fill", function (d, i) { return colorscale(i); })
+;
+//Create text next to squares
+legend.selectAll('text')
+  .data(LegendOptions)
+  .enter()
+  .append("text")
+  .attr("x", w - 52)
+  .attr("y", function (d, i) { return i * 20 + 9; })
+  .attr("font-size", "11px")
+  .attr("fill", "#737373")
+  .text(function (d) { return d; })
+;
+      </script>
+      <script>
+
+google.charts.load('current', { 'packages': ['corechart'] });
+google.charts.setOnLoadCallback(drawVisualization);
+
+
+function drawVisualization() {
+    var dataArray = [];
+    dataArray.push(['Ingredient', 'Value1', 'Value2']);
+    for(var x = 0; x < d[1].length; x++)
+        dataArray.push([d[1][x].axis, Math.max(0,d[1][x].value), Math.min(0,d[1][x].value)]);
+    var data = google.visualization.arrayToDataTable(dataArray);
+
+    var options = {
+
+        title: 'Consumption Variation',
+        legend: 'none',
+        hAxis: {
+            minValue: -0.15,
+            maxValue: 0.15
+        },
+        bar: { groupWidth: "95%" }
+    };
+
+    var chart = new google.visualization.BarChart(document.getElementById('barchart'));
+    chart.draw(data, options);
+}
+      </script>
+      <script>
+
+google.charts.load("current", { packages: ["corechart"] });
+google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+    var pieData = google.visualization.arrayToDataTable([
+      ['Breakfast', 'Consumed'],
+      ['Option1', data.mealsConsumed[1].breakfast[0]],
+      ['Option2', data.mealsConsumed[1].breakfast[1]],
+      ['Option3', data.mealsConsumed[1].breakfast[2]],
+      ['Option4', data.mealsConsumed[1].breakfast[3]],
+      ['Option5', data.mealsConsumed[1].breakfast[4]],
+      ['Option6', data.mealsConsumed[1].breakfast[5]],
+      ['Option7', data.mealsConsumed[1].breakfast[6]],
+    ]);
+
+    var options = {
+        title: 'Last Week\'s Popular Breakfasts',
+        pieHole: 0.3,
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+    chart.draw(pieData, options);
+}
+
+      </script>
+</div>
