@@ -9,6 +9,23 @@ Day.destroy_all
 Stock.destroy_all
 Ingredient.destroy_all
 
+Citizen.delete_all
+Breakfast.delete_all
+Lunch.delete_all
+Dinner.delete_all
+Day.delete_all
+Stock.delete_all
+Ingredient.delete_all
+
+Citizen.reset_pk_sequence
+Breakfast.reset_pk_sequence
+Lunch.reset_pk_sequence
+Dinner.reset_pk_sequence
+Day.reset_pk_sequence
+Stock.reset_pk_sequence
+Ingredient.reset_pk_sequence
+
+
 # Add Citizens to the database
 csv_text_citizens = File.read(Rails.root.join('lib', 'seeds', 'citizens.csv'))
 csv_citizens = CSV.parse(csv_text_citizens, :encoding => 'ISO-8859-1')
@@ -16,15 +33,6 @@ csv_citizens = CSV.parse(csv_text_citizens, :encoding => 'ISO-8859-1')
 csv_citizens.each do |row|
   puts "Citizen #{row[1]} created!"
   Citizen.create(name: row[1])
-end
-
-# Add days of the week to the database
-csv_text_days = File.read(Rails.root.join('lib', 'seeds', 'days_of_week.csv'))
-csv_days = CSV.parse(csv_text_days, :encoding => 'ISO-8859-1')
-
-csv_days.each do |row|
-  puts "Dow #{row[1]} created!"
-  Day.create(citizens_id:	row[1], lunches_id: row[2], dinners_id: row[3], breakfasts_id: row[4], day: row[5], week_num: row[6])
 end
 
 # Add Ingredients to the database
@@ -61,6 +69,15 @@ csv_breakfast = CSV.parse(csv_text_breakfast, :encoding => 'ISO-8859-1')
 csv_breakfast.each do |row|
   puts "Breakfast #{row[1]} created!"
   Breakfast.create(carbs_ingredients_id: row[1], fruits_ingredients_id: row[2], vegetables_ingredients_id: row[3], amount_carbs: row[4], amount_fruits: row[5], amount_vegetables: row[6])
+end
+
+# Add days of the week to the database
+csv_text_days = File.read(Rails.root.join('lib', 'seeds', 'days_of_week.csv'))
+csv_days = CSV.parse(csv_text_days, :encoding => 'ISO-8859-1')
+
+csv_days.each do |row|
+  puts "Dow #{row[1]} created!"
+  Day.create(citizens_id:	row[1], lunches_id: row[2], dinners_id: row[3], breakfasts_id: row[4], day: row[5], week_num: row[6])
 end
 
 # Add stock to the database

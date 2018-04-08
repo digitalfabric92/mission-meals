@@ -9,6 +9,8 @@ gem 'puma'
 gem 'rails', '5.1.5'
 gem 'redis'
 gem 'csv'
+gem 'activerecord-reset-pk-sequence'
+
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'
