@@ -1,7 +1,7 @@
 require 'csv'
 
 # Destroy_all
-User.destroy_all
+Citizen.destroy_all
 Breakfast.destroy_all
 Lunch.destroy_all
 Dinner.destroy_all
@@ -10,57 +10,64 @@ Stock.destroy_all
 Ingredient.destroy_all
 
 # Add Citizens to the database
-citizens = "./citizens.csv"
+csv_text_citizens = File.read(Rails.root.join('lib', 'seeds', 'citizens.csv'))
+csv_citizens = CSV.parse(csv_text_citizens, :encoding => 'ISO-8859-1')
 
-CSV.foreach(citizens) do |row|
+csv_citizens.each do |row|
   puts "Citizen #{row[1]} created!"
-  User.create(name: row[1])
+  Citizen.create(name: row[1])
 end
 
 # Add days of the week to the database
-days = "days_of_week.csv"
+csv_text_days = File.read(Rails.root.join('lib', 'seeds', 'days_of_week.csv'))
+csv_days = CSV.parse(csv_text_days, :encoding => 'ISO-8859-1')
 
-CSV.foreach(days) do |row|
+csv_days.each do |row|
   puts "Dow #{row[1]} created!"
-  Day.create(users_id:	row[1], lunches_id: row[2], dinners_id: row[3], breakfasts_id: row[4], day: row[5], week_num: row[6])
+  Day.create(citizens_id:	row[1], lunches_id: row[2], dinners_id: row[3], breakfasts_id: row[4], day: row[5], week_num: row[6])
 end
 
 # Add Ingredients to the database
-ingredients = "ingredients.csv"
+csv_text_ingredients = File.read(Rails.root.join('lib', 'seeds', 'ingredients.csv'))
+csv_ingredients = CSV.parse(csv_text_ingredients, :encoding => 'ISO-8859-1')
 
-CSV.foreach(ingredients) do |row|
+csv_ingredients.each do |row|
   puts "Ingredients #{row[1]} created!"
   Ingredient.create(name: row[1], category: row[2], calories:	row[3], proteins:	row[4], fats:	row[5], carbs: row[6], prep_time:	row[7], preservation_time: row[8])
 end
 
 # Add dinner to the database
-dinner = "dinner.csv"
+csv_text_dinner = File.read(Rails.root.join('lib', 'seeds', 'dinner.csv'))
+csv_dinner = CSV.parse(csv_text_dinner, :encoding => 'ISO-8859-1')
 
-CSV.foreach(dinner) do |row|
+csv_dinner.each do |row|
   puts "Dinner #{row[1]} created!"
   Dinner.create(carbs_ingredients_id:	row[1], fruits_ingredients_id: row[2], vegetables_ingredients_id: row[3], amount_carbs: row[4], amount_fruits: row[5], amount_vegetables: row[6])
 end
 
 # Add lunch to the database
-lunch = "lunch.csv"
+csv_text_lunch = File.read(Rails.root.join('lib', 'seeds', 'lunch.csv'))
+csv_lunch = CSV.parse(csv_text_lunch, :encoding => 'ISO-8859-1')
 
-CSV.foreach(lunch) do |row|
+csv_lunch.each do |row|
   puts "Lunch #{row[1]} created!"
   Lunch.create(carbs_ingredients_id: row[1], meat_ingredients_id: row[2], vegetables_ingredients_id: row[3], amount_carbs: row[4], amount_meat: row[5], amount_vegetables: row[6])
 end
 
 # Add breakfast to the database
-breakfast = "breakfast.csv"
+csv_text_breakfast = File.read(Rails.root.join('lib', 'seeds', 'breakfast.csv'))
+csv_breakfast = CSV.parse(csv_text_breakfast, :encoding => 'ISO-8859-1')
 
-CSV.foreach(breakfast) do |row|
+csv_breakfast.each do |row|
   puts "Breakfast #{row[1]} created!"
   Breakfast.create(carbs_ingredients_id: row[1], fruits_ingredients_id: row[2], vegetables_ingredients_id: row[3], amount_carbs: row[4], amount_fruits: row[5], amount_vegetables: row[6])
 end
 
 # Add stock to the database
-stock = "stock.csv"
+csv_text_stock = File.read(Rails.root.join('lib', 'seeds', 'stock.csv'))
+csv_stock = CSV.parse(csv_text_stock, :encoding => 'ISO-8859-1')
 
-CSV.foreach(stock) do |row|
+csv_stock.each do |row|
   puts "Stock #{row[1]} created!"
   Stock.create(ingredients_id: row[1],	amount:	row[2], collection_date: row[3])
 end
