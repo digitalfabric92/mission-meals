@@ -1,1 +1,41 @@
-<h1>Review</h1>
+<div class="review-title" style="background-image: linear-gradient(rgba(100,100,100, 0.5), rgba(100,100,100, 0.5) 50%),url('https://www.jisc.ac.uk/sites/default/files/aurora-banner.jpg'); background-size: cover; background-position: center; height: 40vh; color: white; text-shadow: 2px 2px rgba(50,50,50,0.7); display: flex; flex-direction: column;align-items: center;justify-content: center; box-shadow: 0px 2px 3px 2px rgba(50,50,50,0.7)">
+  <h1 style="font-size: 60px;">You meal plan has been confirmed!</h1>
+  <p style="font-size: 26px margin: 5px auto"><em>Your suppliers will send your ingredients by the coming Monday.</em></p>
+</div>
+
+<h2 style="text-align: center">Because you submitted your meal plan, you helped:</h2>
+
+<div class="row review-stats" style="width: 80%; margin: 40px auto;">
+  <div class="col-xs-4">
+    <div class="white-box" style="background-color: white; border-radius: 4px; box-shadow: 0px 2px 3px 2px rgba(50,50,50,0.5); padding: 10px 30px;">
+      <h3 style="margin: 5px auto;">Stat 1</h3>
+      <p style="text-align: center; font-weight: bold; font-size: 40px;">+35%</p>
+    </div>
+  </div>
+  <div class="col-xs-4">
+    <div class="white-box" style="background-color: white; border-radius: 4px; box-shadow: 0px 2px 3px 2px rgba(50,50,50,0.5); padding: 10px 30px;">
+      <h3 style="margin: 5px auto;">Stat 2</h3>
+      <p style="text-align: center; font-weight: bold; font-size: 40px;">-20%</p>
+    </div>
+  </div>
+  <div class="col-xs-4">
+    <div class="white-box" style="background-color: white; border-radius: 4px; box-shadow: 0px 2px 3px 2px rgba(50,50,50,0.5); padding: 10px 30px;">
+      <h3 style="margin: 5px auto;">Stat 3</h3>
+      <p style="text-align: center; font-weight: bold; font-size: 40px;">+45%</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="review-btns" style="display: flex; justify-content: space-around; width: 50%; margin: 20px auto;">
+  <%= link_to statistics_path, class: "review-btn btn", style:"text-decoration: none; color: whitesmoke; background-color: blue; padding: 10px 30px; border-radius: 30px; border: 3px solid blue;" do %>
+    <em>See more colony stats!</em>
+    &nbsp;
+    <i class="fas fa-chart-pie"></i>
+  <% end %>
+  <%= link_to home_path, style:"text-decoration: none; color: whitesmoke; background-color: green; padding: 10px 30px; border-radius: 30px; border: 3px solid green;" do %>
+    <em>Return to homepage</em>
+    &nbsp;
+    <i class="fas fa-undo-alt"></i>
+  <% end %>
+</div>

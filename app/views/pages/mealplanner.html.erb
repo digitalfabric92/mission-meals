@@ -1,1 +1,265 @@
-<h1>Meal Planner</h1>
+<div class="mealplanner-title" style="background-image: linear-gradient(rgba(100,100,100, 0.5), rgba(100,100,100, 0.5) 50%),url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Gudalur_fruit_stand%2C_India.jpg/1024px-Gudalur_fruit_stand%2C_India.jpg'); background-size: cover; background-position: center; height: 200px; color: white; text-shadow: 2px 2px rgba(50,50,50,0.5); display: flex; align-items: center; justify-content: center; box-shadow: 0px 2px 3px 2px rgba(50,50,50,0.5)">
+  <h1 style="font-size: 70px;">Meal Planner</h1>
+</div>
+
+<h2 style="text-align: center;"><em><i class="fas fa-clock"></i>&nbsp;Wanna save some time?</em></h2>
+<div class="mealplanner-btns" style="align-items: center; width: 60%;">
+
+  <!-- Button trigger modal for recommend -->
+  <button type="button" class="btn mealplanner-btn" data-toggle="modal" data-target="#exampleModal">
+    <i class="fas fa-thumbs-up"></i>
+    &nbsp;
+    Recommended me a meal plan!
+  </button>
+
+  <!-- Modal for recommend -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width: 90%; margin: 10px auto;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="color: green; height: 450px;">
+          <h3 style="margin: 10px auto 20px; text-align: center; font-weight: bold;">Confirm your selection</h3>
+          <table style="width: 95%;">
+            <thead>
+              <tr>
+                <th>Meal</th>
+                <th>Mon</th>
+                <th>Tues</th>
+                <th>Wed</th>
+                <th>Thurs</th>
+                <th>Fri</th>
+                <th>Sat</th>
+                <th>Sun</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><em>Breakfast</em></td>
+                <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; padding: 10px 0px;height: 100px;"></td>
+                <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
+              </tr>
+              <tr>
+                <td><em>Lunch</em></td>
+                <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZ3X8ob9jiSv6RCjwZMMGWkQ0YEpLXxTqJXQaoTkuc0a4TTlzlg" alt="" style="width: 100px;"></td>
+                <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZ3X8ob9jiSv6RCjwZMMGWkQ0YEpLXxTqJXQaoTkuc0a4TTlzlg" alt="" style="width: 100px;"></td>
+                <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZ3X8ob9jiSv6RCjwZMMGWkQ0YEpLXxTqJXQaoTkuc0a4TTlzlg" alt="" style="width: 100px;"></td>
+                <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZ3X8ob9jiSv6RCjwZMMGWkQ0YEpLXxTqJXQaoTkuc0a4TTlzlg" alt="" style="width: 100px;"></td>
+                <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZ3X8ob9jiSv6RCjwZMMGWkQ0YEpLXxTqJXQaoTkuc0a4TTlzlg" alt="" style="width: 100px;"></td>
+                <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWF2SCpElmlsT_p9M3JYFisPfVOVDvdyMKg0IKqW-fm5d82Bqykg" alt="" style="width: 100px;"></td>
+                <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWF2SCpElmlsT_p9M3JYFisPfVOVDvdyMKg0IKqW-fm5d82Bqykg" alt="" style="width: 100px;"></td>
+              </tr>
+              <tr>
+                <td><em>Dinner</em></td>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Healthy_dinner.jpg/770px-Healthy_dinner.jpg" alt="" style="width: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Healthy_dinner.jpg/770px-Healthy_dinner.jpg" alt="" style="width: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Healthy_dinner.jpg/770px-Healthy_dinner.jpg" alt="" style="width: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Healthy_dinner.jpg/770px-Healthy_dinner.jpg" alt="" style="width: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Healthy_dinner.jpg/770px-Healthy_dinner.jpg" alt="" style="width: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8wWgeVkWC48MKVAr0XbRm-sAQZ2kgM3w57vqGqfFRWOCo35dv" alt="" style="width: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8wWgeVkWC48MKVAr0XbRm-sAQZ2kgM3w57vqGqfFRWOCo35dv" alt="" style="width: 100px; padding: 10px 0px;"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Not yet</button>
+          <%= link_to review_path, class: "btn btn-primary" do %>
+            Yes!
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p><em>OR</em></p>
+
+<!-- Button trigger modal for inventory -->
+  <button type="button" class="btn mealplanner-btn" data-toggle="modal" data-target="#exampleModal">
+    <i class="fas fa-box-open"></i>
+    &nbsp;
+    Select a plan based on what stock is expiring
+  </button>
+
+  <!-- Modal for inventory -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width: 90%; margin: 10px auto;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="color: green; height: 450px;">
+          <h3 style="margin: 10px auto 20px; text-align: center; font-weight: bold;">Confirm your selection</h3>
+          <table style="width: 95%;">
+            <thead>
+              <tr>
+                <th>Meal</th>
+                <th>Mon</th>
+                <th>Tues</th>
+                <th>Wed</th>
+                <th>Thurs</th>
+                <th>Fri</th>
+                <th>Sat</th>
+                <th>Sun</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><em>Breakfast</em></td>
+                <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; padding: 10px 0px;height: 100px;"></td>
+                <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
+              </tr>
+              <tr>
+                <td><em>Lunch</em></td>
+                <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZ3X8ob9jiSv6RCjwZMMGWkQ0YEpLXxTqJXQaoTkuc0a4TTlzlg" alt="" style="width: 100px;"></td>
+                <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZ3X8ob9jiSv6RCjwZMMGWkQ0YEpLXxTqJXQaoTkuc0a4TTlzlg" alt="" style="width: 100px;"></td>
+                <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZ3X8ob9jiSv6RCjwZMMGWkQ0YEpLXxTqJXQaoTkuc0a4TTlzlg" alt="" style="width: 100px;"></td>
+                <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZ3X8ob9jiSv6RCjwZMMGWkQ0YEpLXxTqJXQaoTkuc0a4TTlzlg" alt="" style="width: 100px;"></td>
+                <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZ3X8ob9jiSv6RCjwZMMGWkQ0YEpLXxTqJXQaoTkuc0a4TTlzlg" alt="" style="width: 100px;"></td>
+                <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWF2SCpElmlsT_p9M3JYFisPfVOVDvdyMKg0IKqW-fm5d82Bqykg" alt="" style="width: 100px;"></td>
+                <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWF2SCpElmlsT_p9M3JYFisPfVOVDvdyMKg0IKqW-fm5d82Bqykg" alt="" style="width: 100px;"></td>
+              </tr>
+              <tr>
+                <td><em>Dinner</em></td>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Healthy_dinner.jpg/770px-Healthy_dinner.jpg" alt="" style="width: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Healthy_dinner.jpg/770px-Healthy_dinner.jpg" alt="" style="width: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Healthy_dinner.jpg/770px-Healthy_dinner.jpg" alt="" style="width: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Healthy_dinner.jpg/770px-Healthy_dinner.jpg" alt="" style="width: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Healthy_dinner.jpg/770px-Healthy_dinner.jpg" alt="" style="width: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8wWgeVkWC48MKVAr0XbRm-sAQZ2kgM3w57vqGqfFRWOCo35dv" alt="" style="width: 100px; padding: 10px 0px;"></td>
+                <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8wWgeVkWC48MKVAr0XbRm-sAQZ2kgM3w57vqGqfFRWOCo35dv" alt="" style="width: 100px; padding: 10px 0px;"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Not yet</button>
+          <%= link_to review_path, class: "btn btn-primary" do %>
+            Yes!
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="tabs">
+  <a id="mon" class="tab active" onclick="setActive(this.id)">Mon</a>
+  <a id="tue" class="tab" onclick="setActive(this.id)">Tues</a>
+  <a id="wed" class="tab" onclick="setActive(this.id)">Wed</a>
+  <a id="thu" class="tab" onclick="setActive(this.id)">Thurs</a>
+  <a id="fri" class="tab" onclick="setActive(this.id)">Fri</a>
+  <a id="sat" class="tab" onclick="setActive(this.id)">Sat</a>
+  <a id="sun" class="tab" onclick="setActive(this.id)">Sun</a>
+</div>
+
+<div class="content">
+
+  <div class='breakfast'>
+    <h1>Breakfast</h1>
+    <div class='row'>
+      <div class='col-xs-6 meal-card-container'>
+        <div class='meal-card'>
+          <img src="https://static.dezeen.com/uploads/2013/06/dezeen_Beijing-Design-Week-confronts-copying-in-China-with-giant-rubber-duck-300x300.jpg" alt='' style="height: 113px;width: 200px;">
+          <p>Option #1</p>
+        </div>
+      </div>
+      <div class='col-xs-6 meal-card-container'>
+        <div class='meal-card'>
+          <img src="https://static.dezeen.com/uploads/2013/06/dezeen_Beijing-Design-Week-confronts-copying-in-China-with-giant-rubber-duck-300x300.jpg" alt='' style="width: 200px;">
+          <p>Option #2</p>
+        </div>
+      </div>
+    </div>
+    <select name="" id="">
+      <option value="">Option 1</option>
+      <option value="">Option 2</option>
+      <option value="">Option 3</option>
+    </select>
+  </div>
+
+  <div class='lunch'>
+    <h1>Lunch</h1>
+    <div class="row">
+      <div class='col-xs-4 meal-card-container'>
+        <div class='meal-card'>
+          <img src='https://static.dezeen.com/uploads/2013/06/dezeen_Beijing-Design-Week-confronts-copying-in-China-with-giant-rubber-duck-300x300.jpg' alt='' style="width: 200px;">
+          <p>Option #1</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='dinner'>
+    <h1>Dinner</h1>
+    <div class='row'>
+      <div class='col-xs-4 meal-card-container'>
+        <div class='meal-card'>
+          <img src='https://static.dezeen.com/uploads/2013/06/dezeen_Beijing-Design-Week-confronts-copying-in-China-with-giant-rubber-duck-300x300.jpg' alt='' style="width: 200px;">
+          <p>Option #1</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  const tabs = document.querySelectorAll(".tab");
+  const content = document.querySelector(".content");
+
+  const removeCurrentActive = () => {
+    tabs.forEach((tab) => {
+      tab.classList.remove("active");
+    })
+    content.innerHTML = "";
+  }
+
+  const displayMeals = "<div class='breakfast'><h1>Breakfast</h1><div class='row'><div class='col-xs-6 meal-card-container'><div class='meal-card'><img src='https://static.dezeen.com/uploads/2013/06/dezeen_Beijing-Design-Week-confronts-copying-in-China-with-giant-rubber-duck-300x300.jpg' alt=''><p>Option #1</p></div></div><div class='col-xs-6 meal-card-container'><div class='meal-card'><img src='https://static.dezeen.com/uploads/2013/06/dezeen_Beijing-Design-Week-confronts-copying-in-China-with-giant-rubber-duck-300x300.jpg' alt=''><p>Option #2</p></div></div></div></div><div class='lunch'><h1>Lunch</h1><div class='row'><div class='col-xs-4 meal-card-container'><div class='meal-card'><img src='https://static.dezeen.com/uploads/2013/06/dezeen_Beijing-Design-Week-confronts-copying-in-China-with-giant-rubber-duck-300x300.jpg' alt=''><p>Option #1</p></div></div></div></div><div class='dinner'><h1>Dinner</h1><div class='row'><div class='col-xs-4 meal-card-container'><div class='meal-card'><img src='https://static.dezeen.com/uploads/2013/06/dezeen_Beijing-Design-Week-confronts-copying-in-China-with-giant-rubber-duck-300x300.jpg' alt=''><p>Option #1</p></div></div></div></div>";
+
+  const setActive = (selectedTab) => {
+    removeCurrentActive();
+    newActiveTab = document.getElementById(selectedTab);
+    newActiveTab.classList.add("active");
+
+    switch(selectedTab) {
+      case "mon":
+        content.innerHTML = displayMeals;
+        break;
+      case "tue":
+        content.innerHTML = displayMeals;
+        break;
+      case "wed":
+        content.innerHTML = displayMeals;
+        break;
+      case "thu":
+        content.innerHTML = displayMeals;
+        break;
+      case "fri":
+        content.innerHTML = displayMeals;
+        break;
+      case "sat":
+        content.innerHTML = displayMeals;
+        break;
+      case "sun":
+        content.innerHTML = displayMeals;
+        break;
+    }
+  }
+</script>
