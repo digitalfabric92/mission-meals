@@ -159,10 +159,14 @@
 </div>
 
 <div class="content">
+  <!-- Scroll-up animation -->
+  <a href ="#" class="scrollToTop" style='  z-index: 99; color: green; text-decoration: none; position: fixed; top: 30px; left: 40px; display: none; font-size: 80px;'><i class="fas fa-angle-double-up"></i>
+  </a>
+
 
   <div class='breakfast'>
     <h1 style='text-align: center;'><strong>Breakfast</strong></h1>
-    <div class='row' style='margin-left: 20px;'>
+    <div class='row'>
       <% @breakfast_meals.each do |meal| %>
         <div class='col-xs-4 meal-card-container' style='display: flex; align-items: center; justify-content: left;'>
           <div class='meal-card'>
@@ -195,7 +199,7 @@
 
   <div class='lunch'>
     <h1 style='text-align: center;'><strong>Lunch</strong></h1>
-    <div class='row'  style='margin-left: 20px;'>
+    <div class='row'>
       <% @lunch_meals.each do |meal| %>
         <div class='col-xs-4 meal-card-container' style='display: flex; align-items: center; justify-content: left;'>
           <div class='meal-card'>
@@ -228,7 +232,7 @@
 
   <div class='dinner'>
     <h1 style='text-align: center;'><strong>Dinner</strong></h1>
-    <div class='row' style='margin-left: 20px;'>
+    <div class='row'>
       <% @dinner_meals.each do |meal| %>
         <div class='col-xs-4 meal-card-container' style='display: flex; align-items: center; justify-content: left;'>
           <div class='meal-card'>
@@ -264,6 +268,8 @@
   <div class='mealplanner-submit' style='display: flex; justify-content: center; align-items: center; height: 150px; background-color: lightgrey;'>
   <!-- Button trigger modal for recommend -->
     <button type='button' class='btn mealplanner-btn' style="font-size: 30px;" data-toggle='modal' data-target='#exampleModal'>
+      <i class="fas fa-list-ul"></i>
+      &nbsp;
       Submit my meal plan!
     </button>
 
@@ -350,7 +356,7 @@
     content.innerHTML = "";
   }
 
-  const displayMeals = "<div class='breakfast'><h1 style='text-align: center;'><strong>Breakfast</strong></h1><div class='row'><% @breakfast_meals.each do |meal| %><div class='col-xs-4 meal-card-container' style='display: flex; align-items: center;''><div class='meal-card'><img src='<%= meal.image_url %>' alt='' style='height: 140px;width: 200px;''></div><div><h2 style='font-size: 22px; margin: 5px 0px;'><strong><%= meal.meal_name %></strong></h2><ul style='font-size: 16px; margin-left: -10px;'><li>Calories: <%= @ingredients.find(meal.carbs_ingredients_id).calories + @ingredients.find(meal.vegetables_ingredients_id).calories + @ingredients.find(meal.fruits_ingredients_id).calories %>g</li><li>Fats: <%= @ingredients.find(meal.carbs_ingredients_id).fats + @ingredients.find(meal.vegetables_ingredients_id).fats + @ingredients.find(meal.fruits_ingredients_id).fats %>g</li><li>Carbs: <%= @ingredients.find(meal.carbs_ingredients_id).carbs + @ingredients.find(meal.vegetables_ingredients_id).carbs + @ingredients.find(meal.fruits_ingredients_id).carbs %>g</li><li>Proteins: <%= @ingredients.find(meal.carbs_ingredients_id).proteins + @ingredients.find(meal.vegetables_ingredients_id).proteins + @ingredients.find(meal.fruits_ingredients_id).proteins %>g</li></ul></div></div><% end %></div><div class='selection' style='display: flex; flex-direction: column; align-items: center; justify-content: center;'><h2><strong>Selection:</strong></h2><select name='selection' id='breakfast-selection' style='border-radius: 40px; padding: 5px 10px; margin-bottom: 30px;'><% @breakfast_meals.each do |meal| %><option value='<%= meal.meal_name.downcase %>'><%= meal.meal_name %></option><% end %><option value='none'>None</option></select></div></div><div class='lunch'><h1 style='text-align: center;'><strong>Lunch</strong></h1><div class='row'><% @lunch_meals.each do |meal| %><div class='col-xs-4 meal-card-container' style='display: flex; align-items: center;''><div class='meal-card'><img src='<%= meal.image_url %>' alt='' style='height: 140px;width: 200px;''></div><div><h2 style='font-size: 22px; margin: 5px 0px;'><strong><%= meal.meal_name %></strong></h2><ul style='font-size: 16px; margin-left: -10px;'><li>Calories: <%= @ingredients.find(meal.carbs_ingredients_id).calories + @ingredients.find(meal.vegetables_ingredients_id).calories + @ingredients.find(meal.meat_ingredients_id).calories %>g</li><li>Fats: <%= @ingredients.find(meal.carbs_ingredients_id).fats + @ingredients.find(meal.vegetables_ingredients_id).fats + @ingredients.find(meal.meat_ingredients_id).fats %>g</li><li>Carbs: <%= @ingredients.find(meal.carbs_ingredients_id).carbs + @ingredients.find(meal.vegetables_ingredients_id).carbs + @ingredients.find(meal.meat_ingredients_id).carbs %>g</li><li>Proteins: <%= @ingredients.find(meal.carbs_ingredients_id).proteins + @ingredients.find(meal.vegetables_ingredients_id).proteins + @ingredients.find(meal.meat_ingredients_id).proteins %>g</li></ul></div></div><% end %></div><div class='selection' style='display: flex; flex-direction: column; align-items: center; justify-content: center;'><h2><strong>Selection:</strong></h2><select name='selection' id='breakfast-selection' style='border-radius: 40px; padding: 5px 10px; margin-bottom: 30px;'><% @lunch_meals.each do |meal| %><option value='<%= meal.meal_name.downcase %>''><%= meal.meal_name %></option><% end %><option value='none'>None</option></select></div></div><div class='dinner'><h1 style='text-align: center;'><strong>Dinner</strong></h1><div class='row'><% @dinner_meals.each do |meal| %><div class='col-xs-4 meal-card-container' style='display: flex; align-items: center;''><div class='meal-card'><img src='<%= meal.image_url %>' alt='' style='height: 140px;width: 200px;''></div><div><h2 style='font-size: 22px; margin: 5px 0px;'><strong><%= meal.meal_name %></strong></h2><ul style='font-size: 16px; margin-left: -10px;'><li>Calories: <%= @ingredients.find(meal.carbs_ingredients_id).calories + @ingredients.find(meal.vegetables_ingredients_id).calories + @ingredients.find(meal.fruits_ingredients_id).calories %>g</li><li>Fats: <%= @ingredients.find(meal.carbs_ingredients_id).fats + @ingredients.find(meal.vegetables_ingredients_id).fats + @ingredients.find(meal.fruits_ingredients_id).fats %>g</li><li>Carbs: <%= @ingredients.find(meal.carbs_ingredients_id).carbs + @ingredients.find(meal.vegetables_ingredients_id).carbs + @ingredients.find(meal.fruits_ingredients_id).carbs %>g</li><li>Proteins: <%= @ingredients.find(meal.carbs_ingredients_id).proteins + @ingredients.find(meal.vegetables_ingredients_id).proteins + @ingredients.find(meal.fruits_ingredients_id).proteins %>g</li></ul></div></div><% end %></div><div class='selection' style='display: flex; flex-direction: column; align-items: center; justify-content: center;'><h2><strong>Selection:</strong></h2><select name='selection' id='breakfast-selection' style='border-radius: 40px; padding: 5px 10px; margin-bottom: 30px;'><% @dinner_meals.each do |meal| %><option value='<%= meal.meal_name.downcase %>'><%= meal.meal_name %></option><% end %><option value='none'>None</option></select></div>";
+  const displayMeals = "<div class='breakfast'><h1 style='text-align: center;'><strong>Breakfast</strong></h1><div class='row'><% @breakfast_meals.each do |meal| %><div class='col-xs-4 meal-card-container' style='display: flex; align-items: center; justify-content: left;'><div class='meal-card'><img src='<%= meal.image_url %>' alt='' style='height: 140px;width: 200px;''></div><div><h2 style='font-size: 22px; margin: 5px 0px;'><strong><%= meal.meal_name %></strong></h2><ul style='font-size: 16px; margin-left: -10px;'><li>Calories: <%= @ingredients.find(meal.carbs_ingredients_id).calories + @ingredients.find(meal.vegetables_ingredients_id).calories + @ingredients.find(meal.fruits_ingredients_id).calories %>g</li><li>Fats: <%= @ingredients.find(meal.carbs_ingredients_id).fats + @ingredients.find(meal.vegetables_ingredients_id).fats + @ingredients.find(meal.fruits_ingredients_id).fats %>g</li><li>Carbs: <%= @ingredients.find(meal.carbs_ingredients_id).carbs + @ingredients.find(meal.vegetables_ingredients_id).carbs + @ingredients.find(meal.fruits_ingredients_id).carbs %>g</li><li>Proteins: <%= @ingredients.find(meal.carbs_ingredients_id).proteins + @ingredients.find(meal.vegetables_ingredients_id).proteins + @ingredients.find(meal.fruits_ingredients_id).proteins %>g</li></ul></div></div><% end %></div><div class='selection' style='display: flex; flex-direction: column; align-items: center; justify-content: center;'><h2><strong>Selection:</strong></h2><select name='selection' id='breakfast-selection' style='border-radius: 40px; padding: 5px 10px; margin-bottom: 30px;'><% @breakfast_meals.each do |meal| %><option value='<%= meal.meal_name.downcase %>'><%= meal.meal_name %></option><% end %><option value='none'>None</option></select></div></div><div class='lunch'><h1 style='text-align: center;'><strong>Lunch</strong></h1><div class='row'><% @lunch_meals.each do |meal| %><div class='col-xs-4 meal-card-container' style='display: flex; align-items: center; justify-content: left;'><div class='meal-card'><img src='<%= meal.image_url %>' alt='' style='height: 140px;width: 200px;''></div><div><h2 style='font-size: 22px; margin: 5px 0px;'><strong><%= meal.meal_name %></strong></h2><ul style='font-size: 16px; margin-left: -10px;'><li>Calories: <%= @ingredients.find(meal.carbs_ingredients_id).calories + @ingredients.find(meal.vegetables_ingredients_id).calories + @ingredients.find(meal.meat_ingredients_id).calories %>g</li><li>Fats: <%= @ingredients.find(meal.carbs_ingredients_id).fats + @ingredients.find(meal.vegetables_ingredients_id).fats + @ingredients.find(meal.meat_ingredients_id).fats %>g</li><li>Carbs: <%= @ingredients.find(meal.carbs_ingredients_id).carbs + @ingredients.find(meal.vegetables_ingredients_id).carbs + @ingredients.find(meal.meat_ingredients_id).carbs %>g</li><li>Proteins: <%= @ingredients.find(meal.carbs_ingredients_id).proteins + @ingredients.find(meal.vegetables_ingredients_id).proteins + @ingredients.find(meal.meat_ingredients_id).proteins %>g</li></ul></div></div><% end %></div><div class='selection' style='display: flex; flex-direction: column; align-items: center; justify-content: center;'><h2><strong>Selection:</strong></h2><select name='selection' id='breakfast-selection' style='border-radius: 40px; padding: 5px 10px; margin-bottom: 30px;'><% @lunch_meals.each do |meal| %><option value='<%= meal.meal_name.downcase %>''><%= meal.meal_name %></option><% end %><option value='none'>None</option></select></div></div><div class='dinner'><h1 style='text-align: center;'><strong>Dinner</strong></h1><div class='row'><% @dinner_meals.each do |meal| %><div class='col-xs-4 meal-card-container' style='display: flex; align-items: center; justify-content: left;'><div class='meal-card'><img src='<%= meal.image_url %>' alt='' style='height: 140px;width: 200px;''></div><div><h2 style='font-size: 22px; margin: 5px 0px;'><strong><%= meal.meal_name %></strong></h2><ul style='font-size: 16px; margin-left: -10px;'><li>Calories: <%= @ingredients.find(meal.carbs_ingredients_id).calories + @ingredients.find(meal.vegetables_ingredients_id).calories + @ingredients.find(meal.fruits_ingredients_id).calories %>g</li><li>Fats: <%= @ingredients.find(meal.carbs_ingredients_id).fats + @ingredients.find(meal.vegetables_ingredients_id).fats + @ingredients.find(meal.fruits_ingredients_id).fats %>g</li><li>Carbs: <%= @ingredients.find(meal.carbs_ingredients_id).carbs + @ingredients.find(meal.vegetables_ingredients_id).carbs + @ingredients.find(meal.fruits_ingredients_id).carbs %>g</li><li>Proteins: <%= @ingredients.find(meal.carbs_ingredients_id).proteins + @ingredients.find(meal.vegetables_ingredients_id).proteins + @ingredients.find(meal.fruits_ingredients_id).proteins %>g</li></ul></div></div><% end %></div><div class='selection' style='display: flex; flex-direction: column; align-items: center; justify-content: center;'><h2><strong>Selection:</strong></h2><select name='selection' id='breakfast-selection' style='border-radius: 40px; padding: 5px 10px; margin-bottom: 30px;'><% @dinner_meals.each do |meal| %><option value='<%= meal.meal_name.downcase %>'><%= meal.meal_name %></option><% end %><option value='none'>None</option></select></div>";
 
   const setActive = (selectedTab) => {
     removeCurrentActive();
@@ -381,4 +387,22 @@
         break;
     }
   }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+    //Check to see if the window is top if not then display button
+    $(window).scroll(function(){
+      if ($(this).scrollTop() > 600) {
+        $('.scrollToTop').fadeIn();
+      } else {
+        $('.scrollToTop').fadeOut();
+      }
+    });
+    //Click event to scroll to top
+    $('.scrollToTop').click(function(){
+      $('html, body').animate({scrollTop : 0},1500);
+      return false;
+    });
+  });
 </script>
