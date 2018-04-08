@@ -8,6 +8,7 @@ class AddDinner < ActiveRecord::Migration[5.1]
       t.integer :amount_carbs
       t.integer :amount_fruits
       t.integer :amount_vegetables
+      t.string :image_url
 
       t.timestamps null:false
     end

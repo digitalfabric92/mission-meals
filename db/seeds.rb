@@ -50,7 +50,7 @@ csv_dinner = CSV.parse(csv_text_dinner, :encoding => 'ISO-8859-1')
 
 csv_dinner.each do |row|
   puts "Dinner #{row[1]} created!"
-  Dinner.create(carbs_ingredients_id:	row[1], fruits_ingredients_id: row[2], vegetables_ingredients_id: row[3], amount_carbs: row[4], amount_fruits: row[5], amount_vegetables: row[6], meal_name: row[7])
+  Dinner.create(carbs_ingredients_id:	row[1], fruits_ingredients_id: row[2], vegetables_ingredients_id: row[3], amount_carbs: row[4], amount_fruits: row[5], amount_vegetables: row[6], meal_name: row[7], image_url: row[8])
 end
 
 # Add lunch to the database
@@ -59,7 +59,7 @@ csv_lunch = CSV.parse(csv_text_lunch, :encoding => 'ISO-8859-1')
 
 csv_lunch.each do |row|
   puts "Lunch #{row[1]} created!"
-  Lunch.create(carbs_ingredients_id: row[1], meat_ingredients_id: row[2], vegetables_ingredients_id: row[3], amount_carbs: row[4], amount_meat: row[5], amount_vegetables: row[6], meal_name: row[7])
+  Lunch.create(carbs_ingredients_id: row[1], meat_ingredients_id: row[2], vegetables_ingredients_id: row[3], amount_carbs: row[4], amount_meat: row[5], amount_vegetables: row[6], meal_name: row[7], image_url: row[8])
 end
 
 # Add breakfast to the database
@@ -68,7 +68,7 @@ csv_breakfast = CSV.parse(csv_text_breakfast, :encoding => 'ISO-8859-1')
 
 csv_breakfast.each do |row|
   puts "Breakfast #{row[1]} created!"
-  Breakfast.create(carbs_ingredients_id: row[1], fruits_ingredients_id: row[2], vegetables_ingredients_id: row[3], amount_carbs: row[4], amount_fruits: row[5], amount_vegetables: row[6], meal_name: row[7])
+  Breakfast.create(carbs_ingredients_id: row[1], fruits_ingredients_id: row[2], vegetables_ingredients_id: row[3], amount_carbs: row[4], amount_fruits: row[5], amount_vegetables: row[6], meal_name: row[7], image_url: row[8])
 end
 
 # Add days of the week to the database

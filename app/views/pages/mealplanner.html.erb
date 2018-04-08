@@ -117,13 +117,11 @@
               <tbody>
                 <tr>
                   <td><em>Breakfast</em></td>
-                  <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; padding: 10px 0px;height: 100px;"></td>
-                  <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
-                  <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
-                  <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
-                  <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
-                  <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
-                  <td><img src="https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg" alt="" style="width: 100px; height: 100px; padding: 10px 0px;"></td>
+                  <% @breakfast_meals.each do |meal| %>
+                    <td>
+                      <img src="<%= meal.image_url %>" alt="" style="width: 100px; padding: 10px 0px;height: 100px;">
+                    </td>
+                  <% end %>
                 </tr>
                 <tr>
                   <td><em>Lunch</em></td>
@@ -180,7 +178,7 @@
       <% @breakfast_meals.each do |meal| %>
         <div class='col-xs-4 meal-card-container' style='display: flex; align-items: center;''>
           <div class='meal-card'>
-            <img src='https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg' alt='' style='height: 140px;width: 200px;''>
+            <img src='<%= meal.image_url %>' alt='' style='height: 140px;width: 200px;''>
           </div>
           <div>
             <h2 style='font-size: 22px; margin: 5px 0px;'><strong><%= meal.meal_name %></strong></h2>
@@ -198,9 +196,9 @@
       <h2><strong>Selection:</strong></h2>
       <select name='selection' id='breakfast-selection' style='border-radius: 40px; padding: 5px 10px; margin-bottom: 30px;'>
         <% @breakfast_meals.each do |meal| %>
-          <option value="<%= meal.meal_name.downcase %>"><%= meal.meal_name %></option>
+          <option value='<%= meal.meal_name.downcase %>'><%= meal.meal_name %></option>
         <% end %>
-        <option value="none">None</option>
+        <option value='none'>None</option>
       </select>
     </div>
   </div>
@@ -211,7 +209,7 @@
       <% @lunch_meals.each do |meal| %>
         <div class='col-xs-4 meal-card-container' style='display: flex; align-items: center;''>
           <div class='meal-card'>
-            <img src='https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg' alt='' style='height: 140px;width: 200px;''>
+            <img src='<%= meal.image_url %>' alt='' style='height: 140px;width: 200px;''>
           </div>
           <div>
             <h2 style='font-size: 22px; margin: 5px 0px;'><strong><%= meal.meal_name %></strong></h2>
@@ -231,7 +229,7 @@
         <% @lunch_meals.each do |meal| %>
           <option value="<%= meal.meal_name.downcase %>"><%= meal.meal_name %></option>
         <% end %>
-        <option value="none">None</option>
+        <option value='none'>None</option>
       </select>
     </div>
   </div>
@@ -242,7 +240,7 @@
       <% @dinner_meals.each do |meal| %>
         <div class='col-xs-4 meal-card-container' style='display: flex; align-items: center;''>
           <div class='meal-card'>
-            <img src='https://www.publicdomainpictures.net/pictures/10000/nahled/healthy-breakfast-871287410500r0Je.jpg' alt='' style='height: 140px;width: 200px;''>
+            <img src='<%= meal.image_url %>' alt='' style='height: 140px;width: 200px;''>
           </div>
           <div>
             <h2 style='font-size: 22px; margin: 5px 0px;'><strong><%= meal.meal_name %></strong></h2>
@@ -260,9 +258,9 @@
       <h2><strong>Selection:</strong></h2>
       <select name='selection' id='breakfast-selection' style='border-radius: 40px; padding: 5px 10px; margin-bottom: 30px;'>
         <% @dinner_meals.each do |meal| %>
-          <option value="<%= meal.meal_name.downcase %>"><%= meal.meal_name %></option>
+          <option value='<%= meal.meal_name.downcase %>'><%= meal.meal_name %></option>
         <% end %>
-        <option value="none">None</option>
+        <option value='none'>None</option>
       </select>
     </div>
   </div>
@@ -358,7 +356,7 @@
     content.innerHTML = "";
   }
 
-  const displayMeals = "<div class='breakfast'><h1>Breakfast</h1><div class='row'><div class='col-xs-6 meal-card-container'><div class='meal-card'><img src='https://static.dezeen.com/uploads/2013/06/dezeen_Beijing-Design-Week-confronts-copying-in-China-with-giant-rubber-duck-300x300.jpg' alt=''><p>Option #1</p></div></div><div class='col-xs-6 meal-card-container'><div class='meal-card'><img src='https://static.dezeen.com/uploads/2013/06/dezeen_Beijing-Design-Week-confronts-copying-in-China-with-giant-rubber-duck-300x300.jpg' alt=''><p>Option #2</p></div></div></div></div><div class='lunch'><h1>Lunch</h1><div class='row'><div class='col-xs-4 meal-card-container'><div class='meal-card'><img src='https://static.dezeen.com/uploads/2013/06/dezeen_Beijing-Design-Week-confronts-copying-in-China-with-giant-rubber-duck-300x300.jpg' alt=''><p>Option #1</p></div></div></div></div><div class='dinner'><h1>Dinner</h1><div class='row'><div class='col-xs-4 meal-card-container'><div class='meal-card'><img src='https://static.dezeen.com/uploads/2013/06/dezeen_Beijing-Design-Week-confronts-copying-in-China-with-giant-rubber-duck-300x300.jpg' alt=''><p>Option #1</p></div></div></div></div>";
+  const displayMeals = "<div class='breakfast'><h1 style='text-align: center;'><strong>Breakfast</strong></h1><div class='row'><% @breakfast_meals.each do |meal| %><div class='col-xs-4 meal-card-container' style='display: flex; align-items: center;''><div class='meal-card'><img src='<%= meal.image_url %>' alt='' style='height: 140px;width: 200px;''></div><div><h2 style='font-size: 22px; margin: 5px 0px;'><strong><%= meal.meal_name %></strong></h2><ul style='font-size: 16px; margin-left: -10px;'><li>Calories: <%= @ingredients.find(meal.carbs_ingredients_id).calories + @ingredients.find(meal.vegetables_ingredients_id).calories + @ingredients.find(meal.fruits_ingredients_id).calories %>g</li><li>Fats: <%= @ingredients.find(meal.carbs_ingredients_id).fats + @ingredients.find(meal.vegetables_ingredients_id).fats + @ingredients.find(meal.fruits_ingredients_id).fats %>g</li><li>Carbs: <%= @ingredients.find(meal.carbs_ingredients_id).carbs + @ingredients.find(meal.vegetables_ingredients_id).carbs + @ingredients.find(meal.fruits_ingredients_id).carbs %>g</li><li>Proteins: <%= @ingredients.find(meal.carbs_ingredients_id).proteins + @ingredients.find(meal.vegetables_ingredients_id).proteins + @ingredients.find(meal.fruits_ingredients_id).proteins %>g</li></ul></div></div><% end %></div><div class='selection' style='display: flex; flex-direction: column; align-items: center; justify-content: center;'><h2><strong>Selection:</strong></h2><select name='selection' id='breakfast-selection' style='border-radius: 40px; padding: 5px 10px; margin-bottom: 30px;'><% @breakfast_meals.each do |meal| %><option value='<%= meal.meal_name.downcase %>'><%= meal.meal_name %></option><% end %><option value='none'>None</option></select></div></div><div class='lunch'><h1 style='text-align: center;'><strong>Lunch</strong></h1><div class='row'><% @lunch_meals.each do |meal| %><div class='col-xs-4 meal-card-container' style='display: flex; align-items: center;''><div class='meal-card'><img src='<%= meal.image_url %>' alt='' style='height: 140px;width: 200px;''></div><div><h2 style='font-size: 22px; margin: 5px 0px;'><strong><%= meal.meal_name %></strong></h2><ul style='font-size: 16px; margin-left: -10px;'><li>Calories: <%= @ingredients.find(meal.carbs_ingredients_id).calories + @ingredients.find(meal.vegetables_ingredients_id).calories + @ingredients.find(meal.meat_ingredients_id).calories %>g</li><li>Fats: <%= @ingredients.find(meal.carbs_ingredients_id).fats + @ingredients.find(meal.vegetables_ingredients_id).fats + @ingredients.find(meal.meat_ingredients_id).fats %>g</li><li>Carbs: <%= @ingredients.find(meal.carbs_ingredients_id).carbs + @ingredients.find(meal.vegetables_ingredients_id).carbs + @ingredients.find(meal.meat_ingredients_id).carbs %>g</li><li>Proteins: <%= @ingredients.find(meal.carbs_ingredients_id).proteins + @ingredients.find(meal.vegetables_ingredients_id).proteins + @ingredients.find(meal.meat_ingredients_id).proteins %>g</li></ul></div></div><% end %></div><div class='selection' style='display: flex; flex-direction: column; align-items: center; justify-content: center;'><h2><strong>Selection:</strong></h2><select name='selection' id='breakfast-selection' style='border-radius: 40px; padding: 5px 10px; margin-bottom: 30px;'><% @lunch_meals.each do |meal| %><option value='<%= meal.meal_name.downcase %>''><%= meal.meal_name %></option><% end %><option value='none'>None</option></select></div></div><div class='dinner'><h1 style='text-align: center;'><strong>Dinner</strong></h1><div class='row'><% @dinner_meals.each do |meal| %><div class='col-xs-4 meal-card-container' style='display: flex; align-items: center;''><div class='meal-card'><img src='<%= meal.image_url %>' alt='' style='height: 140px;width: 200px;''></div><div><h2 style='font-size: 22px; margin: 5px 0px;'><strong><%= meal.meal_name %></strong></h2><ul style='font-size: 16px; margin-left: -10px;'><li>Calories: <%= @ingredients.find(meal.carbs_ingredients_id).calories + @ingredients.find(meal.vegetables_ingredients_id).calories + @ingredients.find(meal.fruits_ingredients_id).calories %>g</li><li>Fats: <%= @ingredients.find(meal.carbs_ingredients_id).fats + @ingredients.find(meal.vegetables_ingredients_id).fats + @ingredients.find(meal.fruits_ingredients_id).fats %>g</li><li>Carbs: <%= @ingredients.find(meal.carbs_ingredients_id).carbs + @ingredients.find(meal.vegetables_ingredients_id).carbs + @ingredients.find(meal.fruits_ingredients_id).carbs %>g</li><li>Proteins: <%= @ingredients.find(meal.carbs_ingredients_id).proteins + @ingredients.find(meal.vegetables_ingredients_id).proteins + @ingredients.find(meal.fruits_ingredients_id).proteins %>g</li></ul></div></div><% end %></div><div class='selection' style='display: flex; flex-direction: column; align-items: center; justify-content: center;'><h2><strong>Selection:</strong></h2><select name='selection' id='breakfast-selection' style='border-radius: 40px; padding: 5px 10px; margin-bottom: 30px;'><% @dinner_meals.each do |meal| %><option value='<%= meal.meal_name.downcase %>'><%= meal.meal_name %></option><% end %><option value='none'>None</option></select></div>";
 
   const setActive = (selectedTab) => {
     removeCurrentActive();
